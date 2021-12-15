@@ -1,2 +1,11 @@
-$wild-color: #ff6c71;
-$light: #fffbfb;
+$light: #EBEBEB;
+$dark: #2F2F30;
+$orange: #F58A52;
+$primary:#C3C3C7;
+
+$theme-colors: (
+  "orange": $orange,
+  "dark": $dark,
+  "light": $light,
+  "primary": $primary
+);
