@@ -12,14 +12,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/", name="app_login")
+     * @Route("/login", name="app_login")
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        if ($this->getUser() && $this->IsGranted('ROLE_USER')) {
+        if ($this->getUser() && $this->IsGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('admin_home');
+        } elseif ($this->getUser() && $this->IsGranted('ROLE_USER')) {
             return $this->redirectToRoute('customer');
-        } elseif ($this->getUser() && $this->IsGranted('ROLE_ADMIN')) {
-            return $this->redirectToRoute('admin');
         }
 
         // get the login error if there is one
@@ -35,8 +35,6 @@ class SecurityController extends AbstractController
      */
     public function logout(): void
     {
-        throw new LogicException(
-            'This method can be blank - it will be intercepted by the logout key on your firewall.'
-        );
+        throw new LogicException('Method can be blank - it will be intercepted by the logout key on your firewall.');
     }
 }
