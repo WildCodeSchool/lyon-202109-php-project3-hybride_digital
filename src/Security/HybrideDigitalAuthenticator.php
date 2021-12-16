@@ -100,6 +100,7 @@ class HybrideDigitalAuthenticator extends AbstractFormLoginAuthenticator
         if ($targetPath) {
             return new RedirectResponse($targetPath);
         }
+        return new RedirectResponse($this->urlGenerator->generate('login'));
     }
 
     protected function getLoginUrl()
