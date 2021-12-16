@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Aldrich&family=Roboto+Condensed&display=swap');
 @import 'variables.scss';
 @import '~bootstrap/scss/bootstrap';
+@import 'welcome.scss';
 
 body {
     font-family: 'Roboto Condensed', sans-serif;
@@ -37,7 +38,7 @@ h1 {
 }
 
 header {
-    background-image: url('/assets/images/greyBanner.png') !important;
+    background-image: url('/assets/images/greyBanner2.png') !important;
     background-repeat: no-repeat;
     background-size: 100%;
   }
