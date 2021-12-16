@@ -19,7 +19,7 @@ class SecurityController extends AbstractController
         if ($this->getUser() && $this->IsGranted('ROLE_ADMIN')) {
             return $this->redirectToRoute('admin_home');
         } elseif ($this->getUser() && $this->IsGranted('ROLE_USER')) {
-            return $this->redirectToRoute('customer');
+            return $this->redirectToRoute('customer_home');
         }
 
         // get the login error if there is one
