@@ -37,6 +37,61 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private string $password;
 
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private string $firstname;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private string $lastname;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $companyname;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $domainname;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private ?string $businesssector;
+
+    /**
+     * @ORM\Column(type="string", length=20, nullable=true)
+     */
+    private ?string $phonenumber;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $adress;
+
+    /**
+     * @ORM\Column(type="string", length=20, nullable=true)
+     */
+    private ?string $postcode;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $city;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private ?float $advertisingbudget;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $marketarea;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -124,5 +179,137 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(string $firstname): self
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(string $lastname): self
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    public function getCompanyname(): ?string
+    {
+        return $this->companyname;
+    }
+
+    public function setCompanyname(?string $companyname): self
+    {
+        $this->companyname = $companyname;
+
+        return $this;
+    }
+
+    public function getDomainname(): ?string
+    {
+        return $this->domainname;
+    }
+
+    public function setDomainname(?string $domainname): self
+    {
+        $this->domainname = $domainname;
+
+        return $this;
+    }
+
+    public function getBusinesssector(): ?string
+    {
+        return $this->businesssector;
+    }
+
+    public function setBusinesssector(?string $businesssector): self
+    {
+        $this->businesssector = $businesssector;
+
+        return $this;
+    }
+
+    public function getPhonenumber(): ?string
+    {
+        return $this->phonenumber;
+    }
+
+    public function setPhonenumber(?string $phonenumber): self
+    {
+        $this->phonenumber = $phonenumber;
+
+        return $this;
+    }
+
+    public function getAdress(): ?string
+    {
+        return $this->adress;
+    }
+
+    public function setAdress(?string $adress): self
+    {
+        $this->adress = $adress;
+
+        return $this;
+    }
+
+    public function getPostcode(): ?string
+    {
+        return $this->postcode;
+    }
+
+    public function setPostcode(?string $postcode): self
+    {
+        $this->postcode = $postcode;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(?string $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getAdvertisingbudget(): ?float
+    {
+        return $this->advertisingbudget;
+    }
+
+    public function setAdvertisingbudget(?float $advertisingbudget): self
+    {
+        $this->advertisingbudget = $advertisingbudget;
+
+        return $this;
+    }
+
+    public function getMarketarea(): ?string
+    {
+        return $this->marketarea;
+    }
+
+    public function setMarketarea(?string $marketarea): self
+    {
+        $this->marketarea = $marketarea;
+
+        return $this;
     }
 }
