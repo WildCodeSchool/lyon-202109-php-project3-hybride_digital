@@ -4,9 +4,7 @@
 
 {% block body %}
 <div class="welcome">
-    <div id="logohd">
-    <img src="{{ asset('build/images/Logo.png') }}" alt="logo"/>
-    </div>
+
     <main class='container-fluid'>
         <form method="post" class="form_welcome">
             {% if error %}
@@ -19,7 +17,7 @@
                 </div>
             {% endif %}
 
-            <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+            <h1>Login</h1>
             <label for="inputEmail">Email</label>
             <input type="email" value="{{ last_username }}" name="email" class="form-control" id="floatingInputValue" autocomplete="email" placeholder="example@seamail.com" required autofocus>
             <label for="inputPassword">Password</label>

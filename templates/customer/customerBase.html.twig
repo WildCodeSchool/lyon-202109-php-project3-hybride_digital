@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block menu_list %}
+	{% set menu_list =
+[
+	{link: "#", bi: "clipboard-data", text: "Mes Audits"},
+	{link: "#", bi: "diagram-3", text: "Mes Actions"},
+	{link: "#", bi: "mortarboard", text: "Glossaire"},
+	{link: "#", bi: "gear", text: "Profil"},
+
+]
+%}
+	{% include "template_menu.html.twig" with menu_list %}
+{% endblock %}
