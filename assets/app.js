@@ -11,7 +11,5 @@ import './styles/app.scss';
 // start the Stimulus application
 import './bootstrap';
 
-// app.js
-
 require('bootstrap');
 require('bootstrap-icons/font/bootstrap-icons.css');
