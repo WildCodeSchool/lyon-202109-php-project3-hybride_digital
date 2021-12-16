@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<link rel="icon" type="image/png" href="{{ asset('build/images/favicon.png') }}"/>
 		<title>
-			{% block title %}Projet 3 Name
+			{% block title %}Hybride Digital -
 			{% endblock %}
 		</title>
 		{% block stylesheets %}
@@ -16,6 +16,11 @@
 		{% endblock %}
 	</head>
 	<body>
-		{% block body %}{% endblock %}
-	</body>
-</html>
+		<div class="container-fluid">
+			<div class="row flex-nowrap"> {% block menu_list %}{% endblock %}
+				<div class="col py-3"> {% block body %}{% endblock %}
+					</div>
+				</div>
+			</div>
+		</body>
+	</html>
