@@ -1,0 +1,40 @@
+.welcome {
+    background-image: url('/assets/images/laptop.jpg');
+    object-fit: cover; 
+    background-size: cover;
+    height: 100vh;
+    width:100%;
+}
+
+ 
+.form_welcome {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding-top: 10em;
+    width: 70%;
+}
+
+label {
+    padding-top:10px;
+    padding-bottom: 5px;
+}
+
+a {
+    text-align: center;
+}
+
+#logohd {
+    text-align: right;
+}
+
+
+@media screen and (min-width:900px) {
+    .form_welcome {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        padding-top: 10em;
+        width: 30%;
+    }
+}
