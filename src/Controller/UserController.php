@@ -28,6 +28,7 @@ class UserController extends AbstractController
 
     /**
      * @Route("/user/{id}", name="user_show", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function show(User $user): Response
     {
