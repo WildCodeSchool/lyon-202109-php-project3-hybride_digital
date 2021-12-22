@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @Route("/user", name="user_")
+ * @IsGranted("ROLE_ADMIN")
  */
 class UserController extends AbstractController
 {
@@ -26,7 +27,7 @@ class UserController extends AbstractController
             ->findAll();
 
         return $this->render(
-            'user/try.html.twig',
+            'user/index.html.twig',
             ['users' => $users]
         );
     }
