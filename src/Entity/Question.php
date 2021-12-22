@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Form\QuestionType;
 use App\Repository\QuestionRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -27,7 +28,7 @@ class Question
     /**
      * @ORM\ManyToMany(targetEntity=Audit::class, mappedBy="question")
      */
-    private ArrayCollection $audits;
+    private Collection $audits;
 
     /**
      * @ORM\Column(type="integer")

@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
+use App\Form\AuditType;
 use App\Repository\AuditRepository;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Entity;
 
 /**
  * @ORM\Entity(repositoryClass=AuditRepository::class)
@@ -33,7 +35,7 @@ class Audit
     /**
      * @ORM\ManyToMany(targetEntity=Question::class, inversedBy="audits")
      */
-    private ArrayCollection $question;
+    private Collection $question;
 
     public function __construct()
     {

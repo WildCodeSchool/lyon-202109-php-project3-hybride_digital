@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Audit;
-use App\Entity\User;
 use App\Form\AuditType;
 use App\Repository\AuditRepository;
 use Doctrine\ORM\EntityManagerInterface;
