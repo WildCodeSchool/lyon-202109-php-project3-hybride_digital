@@ -1,0 +1,16 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Test Audit
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+
+		<h1>Test de l'audit {{ audit.name }}</h1>
+
+		{{ include('audit/_form.html.twig', {'button_label': 'Update'}) }}
+
+		<a href="{{ path('audit_index') }}">back to list</a>
+
+	</div>
+{% endblock %}
