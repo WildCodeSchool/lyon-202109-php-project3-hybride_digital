@@ -32,7 +32,7 @@ class Action
     /**
      * @ORM\ManyToMany(targetEntity=Ressource::class, inversedBy="actions")
      */
-    private ArrayCollection $Ressource;
+    private Collection $Ressource;
 
     public function __construct()
     {
