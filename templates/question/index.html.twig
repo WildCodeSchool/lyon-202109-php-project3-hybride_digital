@@ -1,0 +1,48 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Question index
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<a href="/audit/" class="nav-link align-middle py-5 link-orange">
+				<i class="fs-1 bi-arrow-return-left justify-self-middle"></i>
+				<span class="fs-5 ms-1 d-none d-sm-grid">retour au menu audits</span>
+			</a>
+		</div>
+		<div class="row">
+			<h1>Question index</h1>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Question</th>
+						<th>actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for question in questions %}
+						<tr>
+							<td>{{ question.id }}</td>
+							<td>{{ question.question }}</td>
+							<td>{{ question.typeOfAnswer }}</td>
+							<td>{{ question.valuePoint }}</td>
+							<td>
+								<a href="{{ path('question_show', {'id': question.id}) }}">Visualiser</a>
+								<a href="{{ path('question_edit', {'id': question.id}) }}">Modifier</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="3">no records found</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+			<a href="{{ path('question_new') }}">Créer une nouvelle question</a>
+		</div>
+	</div>
+{% endblock %}
