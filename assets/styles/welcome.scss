@@ -1,5 +1,8 @@
+body {
+    background-color: $dark;
+}
 .welcome {
-    background-image: url('/assets/images/laptop.jpg');
+    background-image: url('/assets/images/bandeau-accueil.png');
     object-fit: cover; 
     background-size: cover;
     height: 100vh;
@@ -8,8 +11,7 @@
 
  
 .form_welcome {
-    margin-left: auto;
-    margin-right: auto;
+    margin-left:10% !important; 
     text-align: center;
     padding-top: 10em;
     width: 70%;
