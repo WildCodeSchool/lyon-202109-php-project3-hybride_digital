@@ -6,11 +6,11 @@
 {% block body %}
 	<div class="container">
 
-		<h1>Edit Audit</h1>
+		<h1>Modification d'audit</h1>
 
-		{{ include('audit/_form.html.twig', {'button_label': 'Update'}) }}
+		{{ include('audit/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
-		<a href="{{ path('audit_index') }}">back to list</a>
+		<a href="{{ path('audit_index') }}">Retour à la liste</a>
 
 		{{ include('audit/_delete_form.html.twig') }}
 
