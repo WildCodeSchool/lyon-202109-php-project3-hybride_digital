@@ -37,13 +37,6 @@ class RegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
-            /*$user->setPassword(
-                $userPasswordHasher->hashPassword(
-                    $user,
-                    $form->get('plainPassword')->getData() . ''
-                )
-            );*/
             $password = $passwordManager->generate(8);
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
@@ -71,13 +64,6 @@ class RegistrationController extends AbstractController
                 $mailer->send($email);
             }
 
-
-            /* return $guardHandler->authenticateUserAndHandleSuccess(
-                $user,
-                $request,
-                $authenticator,
-                'main' // firewall name in security.yaml
-            ); */
             return $this->redirectToRoute('app_register', [], Response::HTTP_SEE_OTHER);
         }
 
