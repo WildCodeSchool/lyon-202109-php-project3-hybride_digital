@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container">
+	<div class="container col-auto col-md-9 col-xl-10">
 		<div class="row">
 			<a href="/question/" class="nav-link align-middle py-5 link-orange">
 				<i class="fs-1 bi-question-square justify-self-middle"></i>
@@ -30,9 +30,9 @@
 							<td>{{ audit.name }}</td>
 							<td>{{ audit.datecreation ? audit.datecreation|date('Y-m-d') : '' }}</td>
 							<td>
-								<a href="{{ path('audit_show', {'id': audit.id}) }}">Visualiser</a>
-								<a href="{{ path('audit_edit', {'id': audit.id}) }}">Modifier</a>
-								<a href="{{ path('audit_test', {'id': audit.id}) }}">Lancer un test</a>
+								<a class="link-dark mx-3" href="{{ path('audit_show', {'id': audit.id}) }}">Visualiser</a>
+								<a class="link-dark mx-3" href="{{ path('audit_edit', {'id': audit.id}) }}">Modifier</a>
+								<a class="link-dark mx-3" href="{{ path('audit_test', {'id': audit.id}) }}">Lancer un test</a>
 							</td>
 						</tr>
 					{% else %}
