@@ -1,0 +1,14 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}New Audit
+{% endblock %}
+
+{% block body %}
+	<div class="container col-auto col-md-9 col-xl-10">
+		<h1>Création d'un nouvel audit</h1>
+
+		{{ include('audit/_form.html.twig') }}
+
+		<a class="link-dark" href="{{ path('audit_index') }}">Retour à la liste</a>
+	</div>
+{% endblock %}
