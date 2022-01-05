@@ -1,0 +1,47 @@
+{% extends 'customer/customerBase.html.twig' %}
+
+{% block title %}Hello ProfileController!
+{% endblock %}
+
+{% block body %}
+
+	<div class="">
+		<h2 class="text-decoration-underline">Mes informations</h2>
+
+		<ul>
+			<li>Nom:
+				{{ app.user.lastname }}</li>
+			<li>Prénom:
+				{{ app.user.firstname }}</li>
+			<li>Email:
+				{{ app.user.email }}</li>
+			<li>Numéro de téléphone:
+				{{ app.user.phonenumber }}</li>
+			<li>Adresse:
+				{{ app.user.adress }}</li>
+			<li>Code Postal:
+				{{ app.user.postcode }}</li>
+			<li>Ville:
+				{{ app.user.city }}</li>
+			<li>Nom de Société:
+				{{ app.user.companyname }}</li>
+			<li>Nom du domaine:
+				{{ app.user.domainname }}</li>
+			<li>Secteur d'activité:
+				{{ app.user.businesssector }}</li>
+			<li>Zone de chalandise:
+				{{ app.user.marketarea}}</li>
+		</ul>
+		<a href="{{ path("profile_update", {id: app.user.id}) }}">Modifier mon profil</a>
+		<div class="mt-5">
+			<h2 class="text-decoration-underline">Sécurité</h2>
+
+			<p>Identifiant:
+				{{ app.user.email }}</p>
+			<p>
+				<a href="#">Modifier mon mot de passe</a>
+			</p>
+		</div>
+	</div>
+
+{% endblock %}
