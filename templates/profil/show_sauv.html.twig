@@ -1,0 +1,114 @@
+{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/customerBase.html.twig") %}
+
+{% block title %}Profil
+{% endblock %}
+
+{% block body %}
+	<div class="container col-auto col-md-9 col-xl-10">
+		<h1>Profil</h1>
+
+		{{ include('profil/_form_show.html.twig') }}
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Id</th>
+					<td>{{ profil.id }}</td>
+				</tr>
+				<tr>
+					<th>CreateAt</th>
+					<td>{{ profil.createAt ? profil.createAt|date('Y-m-d H:i:s') : '' }}</td>
+				</tr>
+				<tr>
+					<th>NumberSiren</th>
+					<td>{{ profil.numberSiren }}</td>
+				</tr>
+				<tr>
+					<th>SizeFirm</th>
+					<td>{{ profil.sizeFirm }}</td>
+				</tr>
+				<tr>
+					<th>SectorFirm</th>
+					<td>{{ profil.sectorFirm }}</td>
+				</tr>
+				<tr>
+					<th>NumberSales</th>
+					<td>{{ profil.numberSales }}</td>
+				</tr>
+				<tr>
+					<th>PoleMarketing</th>
+					<td>{{ profil.poleMarketing ? 'Yes' : 'No' }}</td>
+				</tr>
+				<tr>
+					<th>NumberMarketers</th>
+					<td>{{ profil.numberMarketers }}</td>
+				</tr>
+				<tr>
+					<th>PoleCommercial</th>
+					<td>{{ profil.poleCommercial ? 'Yes' : 'No' }}</td>
+				</tr>
+				<tr>
+					<th>NumberCommercial</th>
+					<td>{{ profil.numberCommercial }}</td>
+				</tr>
+				<tr>
+					<th>CrmUsed</th>
+					<td>{{ profil.crmUsed }}</td>
+				</tr>
+				<tr>
+					<th>CrmName</th>
+					<td>{{ profil.crmName }}</td>
+				</tr>
+				<tr>
+					<th>TimeOfProspec</th>
+					<td>{{ profil.timeOfProspec }}</td>
+				</tr>
+				<tr>
+					<th>PrecisionTimeOfProspec</th>
+					<td>{{ profil.precisionTimeOfProspec }}</td>
+				</tr>
+				<tr>
+					<th>TypeOfProspec</th>
+					<td>{{ profil.typeOfProspec ? profil.typeOfProspec|join(', ') : '' }}</td>
+				</tr>
+				<tr>
+					<th>ProspecMoreClient</th>
+					<td>{{ profil.prospecMoreClient }}</td>
+				</tr>
+				<tr>
+					<th>NumberClosingPerMonth</th>
+					<td>{{ profil.numberClosingPerMonth }}</td>
+				</tr>
+				<tr>
+					<th>PrecisionClosingPerMonth</th>
+					<td>{{ profil.precisionClosingPerMonth }}</td>
+				</tr>
+				<tr>
+					<th>BudgetOfProspecPerMonth</th>
+					<td>{{ profil.budgetOfProspecPerMonth }}</td>
+				</tr>
+				<tr>
+					<th>PrecisionBudgetOfProspecPerMonth</th>
+					<td>{{ profil.precisionBudgetOfProspecPerMonth }}</td>
+				</tr>
+				<tr>
+					<th>AnalyseProspec</th>
+					<td>{{ profil.analyseProspec ? 'Yes' : 'No' }}</td>
+				</tr>
+				<tr>
+					<th>SatisfiedOfRoi</th>
+					<td>{{ profil.satisfiedOfRoi ? 'Yes' : 'No' }}</td>
+				</tr>
+				<tr>
+					<th>PriorityCommercial</th>
+					<td>{{ profil.priorityCommercial ? profil.priorityCommercial|json_encode : '' }}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<a href="{{ path('profil_index_customer') }}">back to list</a>
+
+		<a href="{{ path('profil_edit', {'id': profil.id}) }}">edit</a>
+
+		{{ include('profil/_delete_form.html.twig') }}
+	</div>
+{% endblock %}
