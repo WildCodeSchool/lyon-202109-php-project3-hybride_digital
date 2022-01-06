@@ -2,13 +2,14 @@
 
 namespace App\Entity;
 
+use App\Entity\Profil;
+use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -97,7 +98,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\OneToMany(targetEntity=Profil::class, mappedBy="user")
      */
-    private Profil $profils;
+    private Collection $profils;
 
     public function __construct()
     {
@@ -343,15 +344,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function removeProfil(Profil $profil): self
-    {
-        if ($this->profils->removeElement($profil)) {
-            // set the owning side to null (unless already changed)
-            if ($profil->getUser() === $this) {
-                $profil->setUser(null);
-            }
-        }
+    // public function removeProfil(Profil $profil): self
+    // {
+    //     if ($this->profils->removeElement($profil)) {
+    //         // set the owning side to null (unless already changed)
+    //         if ($profil->getUser() === $this) {
+    //             $profil->setUser(null);
+    //         }
+    //     }
 
-        return $this;
-    }
+    //     return $this;
+    // }
 }

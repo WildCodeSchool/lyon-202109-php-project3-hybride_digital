@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Repository\ProfilRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,7 +26,7 @@ class Profil
     /**
      * @ORM\Column(type="datetime")
      */
-    private \datetime $createAt;
+    private \DateTimeInterface $createAt;
 
     /**
      * @ORM\Column(type="string", length=9, nullable=true)
@@ -85,7 +86,7 @@ class Profil
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $precisionTimeOfProspec;
+    private ?string $precisTimeOfProspec;
 
     /**
      * @ORM\Column(type="array")
@@ -100,22 +101,22 @@ class Profil
     /**
      * @ORM\Column(type="integer")
      */
-    private int $numberClosingPerMonth;
+    private int $numberClosPerMonth;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $precisionClosingPerMonth;
+    private ?string $precisClosPerMonth;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private int $budgetOfProspecPerMonth;
+    private int $budOfProspPerMonth;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private ?string $precisionBudgetOfProspecPerMonth;
+    private ?string $prcisBudProsMonth;
 
     /**
      * @ORM\Column(type="boolean")
@@ -293,14 +294,14 @@ class Profil
         return $this;
     }
 
-    public function getPrecisionTimeOfProspec(): ?string
+    public function getPrecisTimeOfProspec(): ?string
     {
-        return $this->precisionTimeOfProspec;
+        return $this->precisTimeOfProspec;
     }
 
-    public function setPrecisionTimeOfProspec(?string $precisionTimeOfProspec): self
+    public function setPrecisTimeOfProspec(?string $precisTimeOfProspec): self
     {
-        $this->precisionTimeOfProspec = $precisionTimeOfProspec;
+        $this->precisTimeOfProspec = $precisTimeOfProspec;
 
         return $this;
     }
@@ -329,50 +330,50 @@ class Profil
         return $this;
     }
 
-    public function getNumberClosingPerMonth(): ?int
+    public function getNumberClosPerMonth(): ?int
     {
-        return $this->numberClosingPerMonth;
+        return $this->numberClosPerMonth;
     }
 
-    public function setNumberClosingPerMonth(int $numberClosingPerMonth): self
+    public function setNumberClosPerMonth(int $numberClosPerMonth): self
     {
-        $this->numberClosingPerMonth = $numberClosingPerMonth;
+        $this->numberClosPerMonth = $numberClosPerMonth;
 
         return $this;
     }
 
-    public function getPrecisionClosingPerMonth(): ?string
+    public function getPrecisClosPerMonth(): ?string
     {
-        return $this->precisionClosingPerMonth;
+        return $this->precisClosPerMonth;
     }
 
-    public function setPrecisionClosingPerMonth(?string $precisionClosingPerMonth): self
+    public function setPrecisClosPerMonth(?string $precisClosPerMonth): self
     {
-        $this->precisionClosingPerMonth = $precisionClosingPerMonth;
+        $this->precisClosPerMonth = $precisClosPerMonth;
 
         return $this;
     }
 
-    public function getBudgetOfProspecPerMonth(): ?int
+    public function getBudOfProspPerMonth(): ?int
     {
-        return $this->budgetOfProspecPerMonth;
+        return $this->budOfProspPerMonth;
     }
 
-    public function setBudgetOfProspecPerMonth(int $budgetOfProspecPerMonth): self
+    public function setBudOfProspPerMonth(int $budOfProspPerMonth): self
     {
-        $this->budgetOfProspecPerMonth = $budgetOfProspecPerMonth;
+        $this->budOfProspPerMonth = $budOfProspPerMonth;
 
         return $this;
     }
 
-    public function getPrecisionBudgetOfProspecPerMonth(): ?string
+    public function getPrcisBudProsMonth(): ?string
     {
-        return $this->precisionBudgetOfProspecPerMonth;
+        return $this->prcisBudProsMonth;
     }
 
-    public function setPrecisionBudgetOfProspecPerMonth(?string $precisionBudgetOfProspecPerMonth): self
+    public function setPrcisBudProsMonth(?string $prcisBudProsMonth): self
     {
-        $this->precisionBudgetOfProspecPerMonth = $precisionBudgetOfProspecPerMonth;
+        $this->prcisBudProsMonth = $prcisBudProsMonth;
 
         return $this;
     }

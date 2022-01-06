@@ -105,7 +105,7 @@ class ProfilType extends AbstractType
                     'Autre' => 5,
                 ],
             ])
-            ->add('precisionTimeOfProspec', TextType::class, [
+            ->add('precisTimeOfProspec', TextType::class, [
                 'label' => 'Si autre, pouvez-vous précisez ? '
             ])
             ->add('typeOfProspec', ChoiceType::class, [
@@ -137,7 +137,7 @@ class ProfilType extends AbstractType
                 'expanded' => true,
                 'by_reference' => false,
             ])
-            ->add('numberClosingPerMonth', ChoiceType::class, [
+            ->add('numberClosPerMonth', ChoiceType::class, [
                 'label' => 'Combien de closing fetes-vous par mois ?',
                 'choices'  => [
                     '1-2 contrats' => 1,
@@ -147,10 +147,10 @@ class ProfilType extends AbstractType
                     'Autre' => 5,
                 ],
             ])
-            ->add('precisionClosingPerMonth', TextType::class, [
+            ->add('precisClosPerMonth', TextType::class, [
                 'label' => 'Si autre, pouvez-vous précisez ? '
             ])
-            ->add('budgetOfProspecPerMonth', ChoiceType::class, [
+            ->add('budOfProspPerMonth', ChoiceType::class, [
                 'label' => 'Quel est le budget que vous investissez/mois dans la prospection ? ',
                 'choices'  => [
                     '0-100 Euros' => 1,
@@ -162,7 +162,7 @@ class ProfilType extends AbstractType
                     'Autre' => 7,
                 ],
             ])
-            ->add('precisionBudgetOfProspecPerMonth', TextType::class, [
+            ->add('prcisBudProsMonth', TextType::class, [
                 'label' => 'Si autre, pouvez-vous précisez ? '
             ])
             ->add('analyseProspec', ChoiceType::class, [

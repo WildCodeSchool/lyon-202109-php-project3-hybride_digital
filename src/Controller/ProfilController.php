@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Profil;
+use App\Entity\User;
 use App\Form\ProfilType;
 use App\Repository\ProfilRepository;
 use App\Repository\UserRepository;
@@ -12,6 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/profil")
@@ -54,7 +56,9 @@ class ProfilController extends AbstractController
     {
         $profil = new Profil();
         $user = $this->getUser();
-        $profil->setUser($user);
+        if ($user instanceof User) {
+            $profil->setUser($user);
+        }
         $profil->setCreateAt(new DateTime());
         $form = $this->createForm(ProfilType::class, $profil);
         $form->handleRequest($request);
@@ -110,7 +114,7 @@ class ProfilController extends AbstractController
      */
     public function delete(Request $request, Profil $profil, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $profil->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $profil->getId(), (string)$request->request->get('_token'))) {
             $entityManager->remove($profil);
             $entityManager->flush();
         }

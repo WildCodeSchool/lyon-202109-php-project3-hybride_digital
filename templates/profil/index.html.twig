@@ -19,11 +19,11 @@
 			<tbody>
 				{% for profil in profils %}
 					<tr>
-						<td>{{ profil.createAt ? profil.createAt|date('Y-m-d H:i:s') : '' }}</td>
+						<td>{{ profil.createAt ? profil.createAt|date('d-m-Y à H:i:s') : '' }}</td>
 						<td>{{ profil.user.companyname }}</td>
 						<td>{{ profil.user.firstname }} {{ profil.user.lastname }}</td>
 						<td>
-							<a href="{{ path('profil_show', {'id': profil.id}) }}">show</a>
+							<a class="link-dark" href="{{ path('profil_show', {'id': profil.id}) }}">show</a>
 						</td>
 					</tr>
 				{% else %}
@@ -34,6 +34,6 @@
 			</tbody>
 		</table>
 
-		<a href="{{ path('profil_new') }}">Create new</a>
+		<a class="link-dark" href="{{ path('profil_new') }}">Create new</a>
 	</div>
 {% endblock %}
