@@ -24,9 +24,9 @@
 			</tbody>
 		</table>
 
-		<a href="{{ path('audit_index') }}">Retour à la liste</a>
+		<a class="link-dark mx-3" href="{{ path('audit_index') }}">Retour à la liste</a>
 
-		<a href="{{ path('audit_edit', {'id': audit.id}) }}">Modifier</a>
+		<a class="link-dark" href="{{ path('audit_edit', {'id': audit.id}) }}">Modifier</a>
 
 		{{ include('audit/_delete_form.html.twig') }}
 	</div>
