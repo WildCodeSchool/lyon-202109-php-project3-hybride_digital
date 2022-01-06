@@ -39,7 +39,7 @@
 		for (const link of links) {
 			link.addEventListener("click", function (event) {
 				event.preventDefault();
-				if (confirm('Are you sure?')) {
+				if (confirm('Attention cette action est irreversible, êtes-vous sûr de vouloir supprimer cet utilisateur?')) {
 					window.location = this.href;
 				}
 			}, false);
