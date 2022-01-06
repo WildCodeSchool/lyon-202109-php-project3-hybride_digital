@@ -22,6 +22,7 @@ class UserFixtures extends Fixture
         $newUser->setFirstname('Jean-Christophe');
         $newUser->setLastname('RIOTTE');
         $newUser->setRoles(['ROLE_ADMIN']);
+        $newUser->setFirstConnection(true);
         $plaintextPassword = ('jcriotte69');
         // hash the password (based on the security.yaml config for the $user class)
         $hashedPassword = $this->passwordHasder->hashPassword(
@@ -38,6 +39,7 @@ class UserFixtures extends Fixture
         $newUser->setFirstname('Harry');
         $newUser->setLastname('SUIVANT');
         $newUser->setRoles(['']);
+        $newUser->setFirstConnection(false);
         $plaintextPassword = ('client');
         // hash the password (based on the security.yaml config for the $user class)
         $hashedPassword = $this->passwordHasder->hashPassword(

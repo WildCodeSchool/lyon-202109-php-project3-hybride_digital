@@ -92,6 +92,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private ?string $marketarea;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private bool $firstConnection;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -309,6 +314,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setMarketarea(?string $marketarea): self
     {
         $this->marketarea = $marketarea;
+
+        return $this;
+    }
+
+    public function getFirstConnection(): ?bool
+    {
+        return $this->firstConnection;
+    }
+
+    public function setFirstConnection(bool $firstConnection): self
+    {
+        $this->firstConnection = $firstConnection;
 
         return $this;
     }
