@@ -1,9 +1,4 @@
 {% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/customerBase.html.twig") %}
-{# {% if is_granted("ROLE_ADMIN") %}
-	{% extends 'admin/base.html.twig' %}
-{% else %}
-	{% extends 'customer/customerBase.html.twig' %}
-{% endif %} #}
 
 {% block title %}Nouvel Audit
 {% endblock %}
