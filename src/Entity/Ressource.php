@@ -32,7 +32,7 @@ class Ressource
     /**
      * @ORM\ManyToMany(targetEntity=Action::class, mappedBy="Ressource")
      */
-    private ArrayCollection $actions;
+    private Collection $actions;
 
     public function __construct()
     {

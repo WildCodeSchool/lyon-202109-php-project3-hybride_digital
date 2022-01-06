@@ -3,11 +3,10 @@
 {% block menu_list %}
 	{% set menu_list =
 [
-	{link: "#", bi: "grid", text: "Menu Principal"},
+	{link: "/admin/", bi: "grid", text: "Menu Principal"},
 	{link: "/user/", bi: "person", text: "Gestion Utilisateurs"},
 	{link: "/audit/", bi: "journal-text", text: "Gestion Audits"},
 	{link: "#", bi: "envelope", text: "Messagerie"},
-
 ]
 %}
 	{% include "template_menu.html.twig" with menu_list %}
