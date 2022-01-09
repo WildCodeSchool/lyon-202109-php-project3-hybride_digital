@@ -139,7 +139,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        if ($this->getFirstConnection()) {
+            $roles[] = 'ROLE_USER';
+        } else {
+            $roles[] = 'ROLE_FIRSTTIME';
+        }
 
         return array_unique($roles);
     }
