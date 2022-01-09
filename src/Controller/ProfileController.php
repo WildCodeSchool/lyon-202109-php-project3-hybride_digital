@@ -29,8 +29,6 @@ class ProfileController extends AbstractController
     ): Response {
         $isUser = $this->getUser();
 
-        var_dump($isUser);
-
         if ($isUser && ($isUser instanceof User)) {
             $user = $this->getDoctrine()
                 ->getRepository(User::class)
@@ -68,11 +66,10 @@ class ProfileController extends AbstractController
                         $entityManager->persist($user);
                         $entityManager->flush();
 
-                        var_dump($user);
+                        $this->addFlash('success', "Votre mot de passe a été changé avec succès!");
                     }
                 }
             }
-
 
             return $this->render('security/passwordUpdate.html.twig', [
                 'form' => $form->createView(),
