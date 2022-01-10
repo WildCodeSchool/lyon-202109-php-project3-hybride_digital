@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use App\Entity\Profil;
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -91,6 +94,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private ?string $marketarea;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Profil::class, mappedBy="user")
+     */
+    private Collection $profils;
+
+    public function __construct()
+    {
+        $this->profils = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -309,6 +322,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setMarketarea(?string $marketarea): self
     {
         $this->marketarea = $marketarea;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Profil[]
+     */
+    public function getProfils(): Collection
+    {
+        return $this->profils;
+    }
+
+    public function addProfil(Profil $profil): self
+    {
+        if (!$this->profils->contains($profil)) {
+            $this->profils[] = $profil;
+            $profil->setUser($this);
+        }
 
         return $this;
     }

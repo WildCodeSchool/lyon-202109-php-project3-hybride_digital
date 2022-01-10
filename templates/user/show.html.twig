@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container">
+	<div class="container col-auto col-md-9 col-xl-10">
 		<h1>Compte utilisateur
 			{{ user.firstname }}
 			{{ user.lastname }}</h1>
@@ -64,6 +64,6 @@
 			</tbody>
 		</table>
 
-		<a href="{{ path('user_index') }}">Retour à la liste des utilisateur</a>
+		<a class="link-dark" href="{{ path('user_index') }}">Retour à la liste des utilisateur</a>
 	</div>
 {% endblock %}
