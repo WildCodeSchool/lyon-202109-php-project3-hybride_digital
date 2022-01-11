@@ -96,6 +96,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $marketarea;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private bool $firstConnection;
+
+    /**
      * @ORM\OneToMany(targetEntity=Profil::class, mappedBy="user")
      */
     private Collection $profils;
@@ -147,7 +152,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        if ($this->getFirstConnection()) {
+            $roles[] = 'ROLE_USER';
+        } else {
+            $roles[] = 'ROLE_FIRSTTIME';
+        }
 
         return array_unique($roles);
     }
@@ -326,6 +335,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getFirstConnection(): ?bool
+    {
+        return $this->firstConnection;
+    }
+
+    public function setFirstConnection(bool $firstConnection): self
+    {
+        $this->firstConnection = $firstConnection;
+
+        return $this;
+    }
     /**
      * @return Collection|Profil[]
      */
