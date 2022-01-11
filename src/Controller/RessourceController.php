@@ -81,8 +81,8 @@ class RessourceController extends AbstractController
         Ressource $ressource,
         EntityManagerInterface $entityManager,
         ControlUpload $controlUpload
-    ): Response{
-        
+    ): Response {
+
         $form = $this->createForm(RessourceType::class, $ressource);
         $form->handleRequest($request);
 
