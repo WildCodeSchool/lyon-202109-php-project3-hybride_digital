@@ -1,4 +1,4 @@
-{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/customerBase.html.twig") %}
+{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/base.html.twig") %}
 
 {% block title %}Audit
 {% endblock %}

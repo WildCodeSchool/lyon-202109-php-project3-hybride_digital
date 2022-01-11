@@ -2,6 +2,10 @@
 
 namespace App\Service;
 
+use App\Entity\User;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasher;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 use Symfony\Config\Framework\HttpClient\DefaultOptions\RetryFailedConfig;
 
 class PasswordManager
@@ -14,6 +18,7 @@ class PasswordManager
 
         return chr($number);
     }
+
     public function generate(int $length): string
     {
         $forbiddenChar = [34, 39, 47, 94, 96,];
@@ -25,5 +30,13 @@ class PasswordManager
         }
 
         return $password;
+    }
+
+    public function isPasswordValid(
+        string $currentGivenPassword,
+        string $newPassword,
+        string $newPasswordConfirm
+    ): bool {
+        return ($currentGivenPassword !== $newPassword && $newPasswordConfirm === $newPassword);
     }
 }

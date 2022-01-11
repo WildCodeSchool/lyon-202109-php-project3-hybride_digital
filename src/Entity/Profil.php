@@ -6,6 +6,8 @@ use App\Repository\ProfilRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @SuppressWarnings(PHPMD.TooManyFields)
+ * @SuppressWarnings(PHPMD.ExcessivePublicCount)
  * @ORM\Entity(repositoryClass=ProfilRepository::class)
  */
 class Profil
