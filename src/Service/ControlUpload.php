@@ -8,7 +8,7 @@ class ControlUpload
 {
     public function extensionValidity(Ressource $ressource): ?string
     {
-        if ($ressource) {
+        if (null !== $ressource->getimageFile()) {
             $mimeType = $ressource->getimageFile()->getMimeType();
         }
         $fileTypes = [
@@ -19,7 +19,7 @@ class ControlUpload
 
         foreach ($fileTypes as $type => $extensionArray) {
             foreach ($extensionArray as $extension) {
-                if ($mimeType === "$type/$extension") {
+                if (isset($mimeType) && $mimeType === "$type/$extension") {
                     return $type === 'application' ? 'pdf' : $type;
                 }
             }

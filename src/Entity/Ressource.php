@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\RessourceRepository;
+use DateTime;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -128,7 +129,7 @@ class Ressource
     {
         if ($name) {
             $this->imageFile = $name;
-            $this->updateAt = new \Datetime('now');
+            $this->updateAt = new Datetime('now');
         }
 
         return $this;

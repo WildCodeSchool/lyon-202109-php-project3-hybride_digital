@@ -41,9 +41,9 @@ class RessourceController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $extension = "";
 
-            if (null !== $ressource->getImageFile()){
-            $extension = $controlUpload->extensionValidity($ressource);
-        }
+            if (null !== $ressource->getImageFile()) {
+                $extension = $controlUpload->extensionValidity($ressource);
+            }
             $authorizedTypes = ['image', 'video', 'pdf'];
             if (in_array($extension, $authorizedTypes) || $extension === "") {
                 $ressource->setType($extension);
@@ -51,7 +51,9 @@ class RessourceController extends AbstractController
                 $entityManager->flush();
                 return $this->redirectToRoute('ressource_index', [], Response::HTTP_SEE_OTHER);
             } else {
-                $form->addError(new FormError($extension));
+                if ($extension) {
+                    $form->addError(new FormError($extension));
+                }
             }
         }
 
