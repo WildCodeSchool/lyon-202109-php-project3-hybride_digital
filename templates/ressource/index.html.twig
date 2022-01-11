@@ -1,0 +1,61 @@
+{% extends "admin/base.html.twig" %}
+
+{% block title %}Glossaire{% endblock %}
+
+{% block body %}
+
+    <section class="container col-auto col-md-9 col-xl-10">
+        <h1>Glossaire</h1>
+
+        <a href="{{ path('ressource_new') }}">Créer une nouvelle ressource</a>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Description</th>
+                    <th>Lien</th>
+                    <th>Aperçu</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for ressource in ressources %}
+                <tr>
+                    <td>{{ ressource.name }}</td>
+                    <td>{{ ressource.description }}</td>
+                    <td><a href="{{ ressource.link }}" target="_blank">{{ ressource.link }}</a></td>
+                    <td>{% if ressource.type == "image" %}
+                            <a href="{{ path('ressource_show', {'id': ressource.id}) }}">
+                                <img src="{{ vich_uploader_asset(ressource) }}" alt="{{ ressource.name }}" width="150">
+                            </a>
+                        {% endif %}
+                        {% if ressource.type == "pdf" %}
+                            <iframe src="{{ vich_uploader_asset(ressource) }}" alt="{{ ressource.name }}" width="150" height="100"></iframe>
+                        {% endif %}
+
+                        {% if ressource.type == "video"%}
+                            <video controls width="150">
+                            <source src="{{ vich_uploader_asset(ressource) }}" alt="{{ ressource.name }}"
+                            type="video/mp4">
+                            </video>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ path('ressource_show', {'id': ressource.id}) }}">montrer</a>
+                        </br></br>
+                        <a href="{{ path('ressource_edit', {'id': ressource.id}) }}">modifier</a>
+                    </td>
+
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">pas de données</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </section>
+    
+{% endblock %}
+
