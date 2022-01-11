@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
 /**
  * @Route("/profile", name="profile_")
@@ -27,18 +26,13 @@ class ProfileController extends AbstractController
         EntityManagerInterface $entityManager,
         PasswordManager $passwordManager
     ): Response {
-        $isUser = $this->getUser();
+        $user = $this->getUser();
 
-        if ($isUser && ($isUser instanceof User)) {
-            $user = $this->getDoctrine()
-                ->getRepository(User::class)
-                ->findOneBy(['email' => $isUser->getEmail()]);
-
+        if ($user && ($user instanceof User)) {
             $form = $this->createForm(PasswordChangeType::class);
             $form->handleRequest($request);
 
             if (
-                isset($user) &&
                 $form->isSubmitted() &&
                 $form->isValid() &&
                 is_array($request->get('password_change'))
