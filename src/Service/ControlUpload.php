@@ -12,7 +12,7 @@ class ControlUpload
             $mimeType = $ressource->getimageFile()->getMimeType();
         }
         $fileTypes = [
-            'image' => ['jpg', 'jpeg', 'png',],
+            'image' => ['jpg', 'jpeg', 'png', 'gif'],
             'application' => ['pdf',],
             'video' => ['mp4',],
         ];
@@ -24,6 +24,6 @@ class ControlUpload
                 }
             }
         }
-        return 'Veuillez sélectionner le bon format de fichier (Jpg,Jpeg,Png,pdf,mp4) !';
+        return 'Veuillez sélectionner le bon format de fichier (Jpg,Jpeg,Png,Gif,Pdf,mp4) !';
     }
 }

@@ -1,4 +1,4 @@
-{% extends "admin/base.html.twig" %}
+{% extends 'admin/base.html.twig' %}
 
 {% block title %}Ressource{% endblock %}
 
@@ -34,11 +34,12 @@
                 </tr>
             </tbody>
         </table>
+
         <a class="btn" href="{{ path('ressource_index') }}">retour à la liste</a>
         </br></br>
 
         <a class="btn" href="{{ path('ressource_edit', {'id': ressource.id}) }}">modifier</a>
-
+        </br></br>
         {{ include('ressource/_delete_form.html.twig') }}
     </section>
 {% endblock %}

@@ -76,15 +76,34 @@ class RessourceController extends AbstractController
     /**
      * @Route("/{id}/edit", name="ressource_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Ressource $ressource, EntityManagerInterface $entityManager): Response
-    {
+    public function edit(
+        Request $request,
+        Ressource $ressource,
+        EntityManagerInterface $entityManager,
+        ControlUpload $controlUpload
+    ): Response{
+        
         $form = $this->createForm(RessourceType::class, $ressource);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+            $extension = "";
+            $authorizedTypes = ['image', 'video', 'pdf'];
 
-            return $this->redirectToRoute('ressource_index', [], Response::HTTP_SEE_OTHER);
+            if (null !== $ressource->getImageFile()) {
+                $extension = $controlUpload->extensionValidity($ressource);
+            }
+
+            if (in_array($extension, $authorizedTypes) || $extension === "") {
+                $ressource->setType($extension);
+                $entityManager->persist($ressource);
+                $entityManager->flush();
+                return $this->redirectToRoute('ressource_index', [], Response::HTTP_SEE_OTHER);
+            } else {
+                if ($extension) {
+                    $form->addError(new FormError($extension));
+                }
+            }
         }
 
         return $this->renderForm('ressource/edit.html.twig', [

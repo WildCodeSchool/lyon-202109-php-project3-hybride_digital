@@ -1,9 +1,9 @@
-{% extends "admin/base.html.twig" %}
+{% extends 'admin/base.html.twig' %}
 
 {% block title %}Edit Ressource{% endblock %}
 
 {% block body %}
-    <section class="container col-auto col-md-9 col-xl-10">
+    <section class='container'>
         <h1>Modifier les ressources</h1>
 
         {{ include('ressource/_form.html.twig', {'button_label': 'Update'}) }}
