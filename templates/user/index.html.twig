@@ -27,7 +27,7 @@
 						<td>
 							<a class="link-dark mx-3" href="{{ path("user_show", {id: user.id}) }}">voir la fiche</a>
 							<a class="link-dark mx-3" href="{{ path("user_update", {id: user.id}) }}">Modifier</a>
-							<a class="link-orange" href="{{ path("user_delete", {id: user.id}) }}" class="deleteLink">Supprimer</a>
+							<a class="deleteLink link-orange" href="{{ path("user_delete", {id: user.id}) }}">Supprimer</a>
 						</td>
 					</tr>
 				{% endfor %}
@@ -39,7 +39,7 @@
 		for (const link of links) {
 			link.addEventListener("click", function (event) {
 				event.preventDefault();
-				if (confirm('Attention cette action est irreversible, êtes-vous sûr de vouloir supprimer cet utilisateur?')) {
+				if (confirm('Attention cette action est irreversible, êtes-vous sûr de vouloir supprimer cet utilisateur ?')) {
 					window.location = this.href;
 				}
 			}, false);
