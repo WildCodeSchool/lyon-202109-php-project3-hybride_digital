@@ -7,7 +7,6 @@ use App\Entity\User;
 use App\Form\LinkType;
 use App\Repository\UserRepository;
 use App\Form\UserType;
-use App\Repository\LinkRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,7 +26,7 @@ class ProfileController extends AbstractController
      * @Route("/", name="index")
      * @IsGranted("ROLE_USER")
      */
-    public function index(LinkRepository $linkRepository): Response
+    public function index(): Response
     {
         $user = $this->getUser();
 
