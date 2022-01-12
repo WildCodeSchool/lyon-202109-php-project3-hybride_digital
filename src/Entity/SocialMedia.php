@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\LinkRepository;
+use App\Repository\SocialMediaRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=LinkRepository::class)
+ * @ORM\Entity(repositoryClass=SocialMediaRepository::class)
  */
-class Link
+class SocialMedia
 {
     /**
      * @ORM\Id
@@ -63,10 +63,10 @@ class Link
     private ?string $site;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, inversedBy="links")
+     * @ORM\OneToOne(targetEntity=User::class, inversedBy="SocialMedias")
      * @ORM\JoinColumn(nullable=true)
      */
-    private User $user;
+    private ?User $user;
 
     public function getId(): ?int
     {
@@ -181,7 +181,7 @@ class Link
         return $this;
     }
 
-    public function getUser(): User
+    public function getUser(): ?User
     {
         return $this->user;
     }

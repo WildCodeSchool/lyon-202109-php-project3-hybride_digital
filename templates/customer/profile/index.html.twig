@@ -37,7 +37,7 @@
 				<a class="link-dark btn " href="{{ path("profile_update", {id: app.user.id}) }}">Modifier mon profil</a>
 			</div>
 			<div class="col-6">
-				{% if user.links is not empty %}
+				{% if user.SocialMedias is not empty %}
 					<table class="table">
 						<thead>
 							<tr>
@@ -48,54 +48,54 @@
 							<tr>
 								<td>Linkedlin:
 								</td>
-								<td>{{ user.links.linkedIn }}</td>
+								<td>{{ user.SocialMedias.linkedIn }}</td>
 							</tr>
 							<tr>
 								<td>Facebook:
 								</td>
-								<td>{{ user.links.facebook }}</td>
+								<td>{{ user.SocialMedias.facebook }}</td>
 							</tr>
 							<tr>
 								<td>Tiktok:
 								</td>
-								<td>{{ user.links.tiktok }}</td>
+								<td>{{ user.SocialMedias.tiktok }}</td>
 							</tr>
 							<tr>
 								<td>Twitter:
 								</td>
-								<td>{{ user.links.twitter }}</td>
+								<td>{{ user.SocialMedias.twitter }}</td>
 							</tr>
 							<tr>
 								<td>Instagram:
 								</td>
-								<td>{{ user.links.instagram }}</td>
+								<td>{{ user.SocialMedias.instagram }}</td>
 							</tr>
 							<tr>
 								<td>Snapchat:
 								</td>
-								<td>{{ user.links.snapchat }}</td>
+								<td>{{ user.SocialMedias.snapchat }}</td>
 							</tr>
 							<tr>
 								<td>Youtube:
 								</td>
-								<td>{{ user.links.youtube }}</td>
+								<td>{{ user.SocialMedias.youtube }}</td>
 							</tr>
 							<tr>
 								<td>Pinterest:
 								</td>
-								<td>{{ user.links.pinterest }}</td>
+								<td>{{ user.SocialMedias.pinterest }}</td>
 							</tr>
 							<tr>
 								<td>Site Internet:
 								</td>
-								<td>{{ user.links.site }}</td>
+								<td>{{ user.SocialMedias.site }}</td>
 							</tr>
 						</tbody>
 					</table>
-					<a class="btn" href="{{ path("profile_linkUpdate") }}">Modifier mes liens</a>
+					<a class="btn" href="{{ path("profile_SocialMediaUpdate") }}">Modifier mes liens</a>
 				{% endif %}
-				{% if user.links is empty %}
-					<a class="btn mt-3" href="{{ path("profile_newLinks") }}">Ajouter mes liens</a>
+				{% if user.SocialMedias is empty %}
+					<a class="btn mt-3" href="{{ path("profile_newSocialMedias") }}">Ajouter mes liens</a>
 				{% endif %}
 			</div>
 		</div>

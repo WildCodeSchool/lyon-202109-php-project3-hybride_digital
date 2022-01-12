@@ -2,9 +2,9 @@
 
 namespace App\Controller;
 
-use App\Entity\Link;
+use App\Entity\SocialMedia;
 use App\Entity\User;
-use App\Form\LinkType;
+use App\Form\SocialMediaType;
 use App\Repository\UserRepository;
 use App\Form\UserType;
 use Doctrine\ORM\EntityManagerInterface;
@@ -53,41 +53,41 @@ class ProfileController extends AbstractController
     }
 
     /**
-     * @Route("/newlinks", name="newLinks", methods={"GET", "POST"})
+     * @Route("/newSocialMedias", name="newSocialMedias", methods={"GET", "POST"})
      */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $links = new Link();
+        $socialMedias = new SocialMedia();
         $user = $this->getUser();
         if ($user instanceof User) {
-            $links->setUser($user);
+            $socialMedias->setUser($user);
         }
-        $form = $this->createForm(LinkType::class, $links);
+        $form = $this->createForm(SocialMediaType::class, $socialMedias);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($links);
+            $entityManager->persist($socialMedias);
             $entityManager->flush();
 
             return $this->redirectToRoute('profile_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('customer/profile/newLinks.html.twig', [
-            'links' => $links,
+        return $this->render('customer/profile/newSocialMedias.html.twig', [
+            'SocialMedias' => $socialMedias,
             'form' => $form->createView(),
         ]);
     }
     /**
-     * @Route("/linkUpdate", name="linkUpdate", methods={"GET", "POST"})
+     * @Route("/SocialMediaUpdate", name="SocialMediaUpdate", methods={"GET", "POST"})
      */
-    public function linkUpdate(Request $request, EntityManagerInterface $entityManager): Response
+    public function socialMediaUpdate(Request $request, EntityManagerInterface $entityManager): Response
     {
-        $links = null;
+        $socialMedias = null;
         $user = $this->getUser();
         if ($user instanceof User) {
-            $links = $user->getLinks();
+            $socialMedias = $user->getSocialMedias();
         }
-        $form = $this->createForm(LinkType::class, $links);
+        $form = $this->createForm(SocialMediaType::class, $socialMedias);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -96,7 +96,7 @@ class ProfileController extends AbstractController
             return $this->redirectToRoute('profile_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('customer/profile/updateLink.html.twig', ['updateLinkform' => $form->createView()]);
+        return $this->render('customer/profile/updateSocialMedia.html.twig', ['updateform' => $form->createView()]);
     }
 
     /**
