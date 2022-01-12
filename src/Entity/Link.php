@@ -66,7 +66,7 @@ class Link
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="links")
      * @ORM\JoinColumn(nullable=true)
      */
-    private User $user;
+    private ?User $user;
 
     public function getId(): ?int
     {
@@ -181,12 +181,12 @@ class Link
         return $this;
     }
 
-    public function getUser(): User
+    public function getUser(): ?User
     {
         return $this->user;
     }
 
-    public function setUser(User $user): self
+    public function setUser(?User $user): self
     {
         $this->user = $user;
 
