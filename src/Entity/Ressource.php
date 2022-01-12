@@ -3,12 +3,17 @@
 namespace App\Entity;
 
 use App\Repository\RessourceRepository;
+use DateTime;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=RessourceRepository::class)
+ * @Vich\Uploadable
  */
 class Ressource
 {
@@ -20,28 +25,56 @@ class Ressource
     private int $id;
 
     /**
-     * @ORM\Column(type="text")
-     */
-    private string $description;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
-    private string $link;
+    private string $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Action::class, mappedBy="Ressource")
+     * @ORM\Column(type="text", nullable=true)
      */
-    private Collection $actions;
+    private ?string $description;
 
-    public function __construct()
-    {
-        $this->actions = new ArrayCollection();
-    }
+    /**
+     * @ORM\Column(type="string", length=300, nullable=true)
+     */
+    private ?string $link;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private ?DateTimeInterface $updateAt;
+
+    /**
+     * @ORM\Column(type="string", length=300, nullable=true)
+     */
+    private ?string $fileName = null;
+
+    /**
+     * @Vich\UploadableField(mapping="poster_file", fileNameProperty="fileName")
+     * @var File
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private ?string $type;
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
     }
 
     public function getDescription(): ?string
@@ -49,7 +82,7 @@ class Ressource
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
@@ -61,36 +94,60 @@ class Ressource
         return $this->link;
     }
 
-    public function setLink(string $link): self
+    public function setLink(?string $link): self
     {
         $this->link = $link;
 
         return $this;
     }
 
-    /**
-     * @return Collection|Action[]
-     */
-    public function getActions(): Collection
+    public function getUpdateAt(): ?\DateTimeInterface
     {
-        return $this->actions;
+        return $this->updateAt;
     }
 
-    public function addAction(Action $action): self
+    public function setUpdateAt(?\DateTimeInterface $updateAt): self
     {
-        if (!$this->actions->contains($action)) {
-            $this->actions[] = $action;
-            $action->addRessource($this);
+        $this->updateAt = $updateAt;
+
+        return $this;
+    }
+
+    public function getFileName(): ?string
+    {
+        return $this->fileName;
+    }
+
+    public function setFileName(?string $fileName): self
+    {
+        $this->fileName = $fileName;
+
+        return $this;
+    }
+
+    public function setimageFile(File $name = null): self
+    {
+        if ($name) {
+            $this->imageFile = $name;
+            $this->updateAt = new Datetime('now');
         }
 
         return $this;
     }
 
-    public function removeAction(Action $action): self
+    public function getimageFile(): ?File
     {
-        if ($this->actions->removeElement($action)) {
-            $action->removeRessource($this);
-        }
+        return $this->imageFile;
+    }
+
+    public function getType(): ?string
+    {
+        return $this->type;
+    }
+
+    public function setType(?string $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }
