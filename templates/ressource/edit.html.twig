@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
 {% block title %}Edit Ressource{% endblock %}
 
@@ -6,10 +6,10 @@
     <section class='container'>
         <h1>Modifier les ressources</h1>
 
-        {{ include('ressource/_form.html.twig', {'button_label': 'Update'}) }}
-
-        <a href="{{ path('ressource_index') }}">retour à la liste</a>
-
+        {{ include('ressource/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+        </br>
+        <a class="btn" href="{{ path('ressource_index') }}">retour à la liste</a>
+        </br></br>
         {{ include('ressource/_delete_form.html.twig') }}
     </section>
 {% endblock %}

@@ -64,7 +64,7 @@ class Link
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="links")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private User $user;
 

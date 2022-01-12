@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Ressource;
+use App\Service\ControlUpload;
 use App\Form\RessourceType;
 use App\Repository\RessourceRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -11,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Form\FormError;
 
 /**
  * @Route("/ressource")
@@ -31,17 +33,28 @@ class RessourceController extends AbstractController
     /**
      * @Route("/new", name="ressource_new", methods={"GET", "POST"})
      */
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, ControlUpload $controlUpload): Response
     {
         $ressource = new Ressource();
         $form = $this->createForm(RessourceType::class, $ressource);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($ressource);
-            $entityManager->flush();
+            $extension = "";
 
-            return $this->redirectToRoute('ressource_index', [], Response::HTTP_SEE_OTHER);
+            if (null !== $ressource->getImageFile()) {
+                $extension = $controlUpload->extensionValidity($ressource);
+            }
+            $authorizedTypes = ['image', 'video', 'pdf'];
+            if (in_array($extension, $authorizedTypes) || $extension === "") {
+                $ressource->setType($extension);
+                $entityManager->persist($ressource);
+                $entityManager->flush();
+                return $this->redirectToRoute('ressource_index', [], Response::HTTP_SEE_OTHER);
+            } else {
+                if ($extension) {
+                    $form->addError(new FormError($extension));
+                }
+            }
         }
 
         return $this->renderForm('ressource/new.html.twig', [
@@ -63,15 +76,34 @@ class RessourceController extends AbstractController
     /**
      * @Route("/{id}/edit", name="ressource_edit", methods={"GET", "POST"})
      */
-    public function edit(Request $request, Ressource $ressource, EntityManagerInterface $entityManager): Response
-    {
+    public function edit(
+        Request $request,
+        Ressource $ressource,
+        EntityManagerInterface $entityManager,
+        ControlUpload $controlUpload
+    ): Response {
+
         $form = $this->createForm(RessourceType::class, $ressource);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+            $extension = "";
+            $authorizedTypes = ['image', 'video', 'pdf'];
 
-            return $this->redirectToRoute('ressource_index', [], Response::HTTP_SEE_OTHER);
+            if (null !== $ressource->getImageFile()) {
+                $extension = $controlUpload->extensionValidity($ressource);
+            }
+
+            if (in_array($extension, $authorizedTypes) || $extension === "") {
+                $ressource->setType($extension);
+                $entityManager->persist($ressource);
+                $entityManager->flush();
+                return $this->redirectToRoute('ressource_index', [], Response::HTTP_SEE_OTHER);
+            } else {
+                if ($extension) {
+                    $form->addError(new FormError($extension));
+                }
+            }
         }
 
         return $this->renderForm('ressource/edit.html.twig', [

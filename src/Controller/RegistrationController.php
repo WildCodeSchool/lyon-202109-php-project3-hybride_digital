@@ -43,11 +43,13 @@ class RegistrationController extends AbstractController
                     $user,
                     $password
                 )
-            );
+            )
+                ->setFirstConnection(false);
 
             $entityManager->persist($user);
             $entityManager->flush();
-            // do anything else you need here, like send an email
+
+            $url = $request->getSchemeAndHttpHost();
 
             $mailParameter = $this->getParameter('mailer_from');
             if (isset($mailParameter)) {
@@ -59,6 +61,7 @@ class RegistrationController extends AbstractController
                         [
                             'user' => $user,
                             'password' => $password,
+                            'url' => $url,
                         ]
                     ));
                 $mailer->send($email);

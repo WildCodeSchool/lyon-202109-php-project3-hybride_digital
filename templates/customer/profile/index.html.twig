@@ -1,4 +1,4 @@
-{% extends 'customer/customerBase.html.twig' %}
+{% extends 'customer/base.html.twig' %}
 
 {% block title %}Hello ProfileController!
 {% endblock %}
@@ -105,7 +105,7 @@
 			<p>Identifiant:
 				{{ app.user.email }}</p>
 			<p>
-				<a class="link-dark" href="#{#{{ path(" profile_password")}}#}">Modifier mon mot de passe</a>
+				<a class="link-dark" href="{{ path("profile_password") }}">Modifier mon mot de passe</a>
 			</p>
 		</div>
 	</div>
