@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Link;
 use App\Entity\Profil;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -104,6 +105,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\OneToMany(targetEntity=Profil::class, mappedBy="user")
      */
     private Collection $profils;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Link::class, mappedBy="user", orphanRemoval=true, nullable=true)
+     */
+    private ?Link $links;
 
     public function __construct()
     {
@@ -361,6 +367,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $profil->setUser($this);
         }
 
+        return $this;
+    }
+
+    /**
+     * @return ?Link
+     */
+    public function getLinks(): ?Link
+    {
+        return $this->links;
+    }
+
+    public function setLinks(Link $links): self
+    {
+        if ($links->getUser() !== $this) {
+            $links->setUser($this);
+        }
+        $this->links = $links;
         return $this;
     }
 }
