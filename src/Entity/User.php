@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\SocialMedia;
 use App\Entity\Profil;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -104,6 +105,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\OneToMany(targetEntity=Profil::class, mappedBy="user")
      */
     private Collection $profils;
+
+    /**
+     * @ORM\OneToOne(targetEntity=SocialMedia::class, mappedBy="user", orphanRemoval=true)
+     */
+    private ?SocialMedia $socialMedias;
 
     public function __construct()
     {
@@ -361,6 +367,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $profil->setUser($this);
         }
 
+        return $this;
+    }
+
+    /**
+     * @return ?SocialMedia
+     */
+    public function getSocialMedias(): ?SocialMedia
+    {
+        return $this->socialMedias;
+    }
+
+    public function setSocialMedias(SocialMedia $socialMedias): self
+    {
+        if ($socialMedias->getUser() !== $this) {
+            $socialMedias->setUser($this);
+        }
+        $this->socialMedias = $socialMedias;
         return $this;
     }
 }
