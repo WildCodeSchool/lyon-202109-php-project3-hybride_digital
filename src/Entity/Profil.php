@@ -71,69 +71,14 @@ class Profil
     private ?int $numberCommercial;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\OneToOne(targetEntity=ProfilMarketing::class, mappedBy="profil", cascade={"persist", "remove"})
      */
-    private int $crmUsed;
+    private ProfilMarketing $profilMarketing;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\OneToOne(targetEntity=ProfilCommercial::class, mappedBy="profil", cascade={"persist", "remove"})
      */
-    private ?string $crmName;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private int $timeOfProspec;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private ?string $precisTimeOfProspec;
-
-    /**
-     * @ORM\Column(type="array")
-     */
-    private array $typeOfProspec = [];
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private int $prospecMoreClient;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private int $numberClosPerMonth;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private ?string $precisClosPerMonth;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private int $budOfProspPerMonth;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private ?string $prcisBudProsMonth;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private bool $analyseProspec;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private bool $satisfiedOfRoi;
-
-    /**
-     * @ORM\Column(type="json")
-     */
-    private array $priorityCommercial = [];
+    private ProfilCommercial $profilCommercial;
 
     public function getId(): ?int
     {
@@ -260,158 +205,37 @@ class Profil
         return $this;
     }
 
-    public function getCrmUsed(): ?int
+
+    public function getProfilMarketing(): ?ProfilMarketing
     {
-        return $this->crmUsed;
+        return $this->profilMarketing;
     }
 
-    public function setCrmUsed(int $crmUsed): self
+    public function setProfilMarketing(ProfilMarketing $profilMarketing): self
     {
-        $this->crmUsed = $crmUsed;
+        // set the owning side of the relation if necessary
+        if ($profilMarketing->getProfil() !== $this) {
+            $profilMarketing->setProfil($this);
+        }
+
+        $this->profilMarketing = $profilMarketing;
 
         return $this;
     }
 
-    public function getCrmName(): ?string
+    public function getProfilCommercial(): ?ProfilCommercial
     {
-        return $this->crmName;
+        return $this->profilCommercial;
     }
 
-    public function setCrmName(?string $crmName): self
+    public function setProfilCommercial(ProfilCommercial $profilCommercial): self
     {
-        $this->crmName = $crmName;
+        // set the owning side of the relation if necessary
+        if ($profilCommercial !== null && $profilCommercial->getProfil() !== $this) {
+            $profilCommercial->setProfil($this);
+        }
 
-        return $this;
-    }
-
-    public function getTimeOfProspec(): ?int
-    {
-        return $this->timeOfProspec;
-    }
-
-    public function setTimeOfProspec(int $timeOfProspec): self
-    {
-        $this->timeOfProspec = $timeOfProspec;
-
-        return $this;
-    }
-
-    public function getPrecisTimeOfProspec(): ?string
-    {
-        return $this->precisTimeOfProspec;
-    }
-
-    public function setPrecisTimeOfProspec(?string $precisTimeOfProspec): self
-    {
-        $this->precisTimeOfProspec = $precisTimeOfProspec;
-
-        return $this;
-    }
-
-    public function getTypeOfProspec(): ?array
-    {
-        return $this->typeOfProspec;
-    }
-
-    public function setTypeOfProspec(array $typeOfProspec): self
-    {
-        $this->typeOfProspec = $typeOfProspec;
-
-        return $this;
-    }
-
-    public function getProspecMoreClient(): ?int
-    {
-        return $this->prospecMoreClient;
-    }
-
-    public function setProspecMoreClient(int $prospecMoreClient): self
-    {
-        $this->prospecMoreClient = $prospecMoreClient;
-
-        return $this;
-    }
-
-    public function getNumberClosPerMonth(): ?int
-    {
-        return $this->numberClosPerMonth;
-    }
-
-    public function setNumberClosPerMonth(int $numberClosPerMonth): self
-    {
-        $this->numberClosPerMonth = $numberClosPerMonth;
-
-        return $this;
-    }
-
-    public function getPrecisClosPerMonth(): ?string
-    {
-        return $this->precisClosPerMonth;
-    }
-
-    public function setPrecisClosPerMonth(?string $precisClosPerMonth): self
-    {
-        $this->precisClosPerMonth = $precisClosPerMonth;
-
-        return $this;
-    }
-
-    public function getBudOfProspPerMonth(): ?int
-    {
-        return $this->budOfProspPerMonth;
-    }
-
-    public function setBudOfProspPerMonth(int $budOfProspPerMonth): self
-    {
-        $this->budOfProspPerMonth = $budOfProspPerMonth;
-
-        return $this;
-    }
-
-    public function getPrcisBudProsMonth(): ?string
-    {
-        return $this->prcisBudProsMonth;
-    }
-
-    public function setPrcisBudProsMonth(?string $prcisBudProsMonth): self
-    {
-        $this->prcisBudProsMonth = $prcisBudProsMonth;
-
-        return $this;
-    }
-
-    public function getAnalyseProspec(): ?bool
-    {
-        return $this->analyseProspec;
-    }
-
-    public function setAnalyseProspec(bool $analyseProspec): self
-    {
-        $this->analyseProspec = $analyseProspec;
-
-        return $this;
-    }
-
-    public function getSatisfiedOfRoi(): ?bool
-    {
-        return $this->satisfiedOfRoi;
-    }
-
-    public function setSatisfiedOfRoi(bool $satisfiedOfRoi): self
-    {
-        $this->satisfiedOfRoi = $satisfiedOfRoi;
-
-        return $this;
-    }
-
-    public function getPriorityCommercial(): ?array
-    {
-        return $this->priorityCommercial;
-    }
-
-    public function setPriorityCommercial(array $priorityCommercial): self
-    {
-        $this->priorityCommercial = $priorityCommercial;
+        $this->profilCommercial = $profilCommercial;
 
         return $this;
     }
