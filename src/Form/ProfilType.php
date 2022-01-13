@@ -8,6 +8,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -58,7 +60,7 @@ class ProfilType extends AbstractType
                     'Activités extra-territoriales' => 20
                 ],
             ])
-            ->add('numberSales', IntegerType::class, [
+            ->add('numberSales', MoneyType::class, [
                 'label' => 'CA en 2021 : '
             ])
             ->add('poleMarketing', ChoiceType::class, [
@@ -67,10 +69,13 @@ class ProfilType extends AbstractType
                 'multiple' => false,
                 'expanded' => true,
                 'by_reference' => false,
-                'required' => false,
+                'required' => true,
             ])
             ->add('numberMarketers', IntegerType::class, [
-                'label' => 'Si oui combien de personnes ? '
+                'label' => 'Si oui combien de personnes ? ',
+                'required' => false,
+                'attr' => [
+                    'style' => '-moz-appearance: textfield;']
             ])
             ->add('poleCommercial', ChoiceType::class, [
                 'label'    => 'Pôle commercial au sein de votre entreprise ?',
@@ -78,129 +83,14 @@ class ProfilType extends AbstractType
                 'multiple' => false,
                 'expanded' => true,
                 'by_reference' => false,
-                'required' => false,
+                'required' => true,
             ])
             ->add('numberCommercial', IntegerType::class, [
-                'label' => 'Si oui combien de personnes ? '
-            ])
-            ->add('crmUsed', ChoiceType::class, [
-                'label' => 'Selectionnez le CRM que vous utilisez : ',
-                'choices'  => [
-                    'Hubspot' => 1,
-                    'Eudonet' => 2,
-                    'Pipedrive' => 3,
-                    'Aucun' => 4,
-                    'Autre' => 5,
-                ],
-            ])
-            ->add('crmName', TextType::class, [
-                'label' => 'Si autre, pouvez-vous précisez ? '
-            ])
-            ->add('timeOfProspec', ChoiceType::class, [
-                'choices'  => [
-                    '1h-2h' => 1,
-                    '3h-4h' => 2,
-                    '6h-8h' => 3,
-                    '+8h' => 4,
-                    'Autre' => 5,
-                ],
-            ])
-            ->add('precisTimeOfProspec', TextType::class, [
-                'label' => 'Si autre, pouvez-vous précisez ? '
+                'label' => 'Si oui combien de personnes ? ',
+                'required' => false,
+                'attr' => [
+                    'style' => '-moz-appearance: textfield;']
             ]);
-            $this->buildFormLastPart($builder);
-    }
-
-    public function buildFormLastPart(FormBuilderInterface $builder): void
-    {
-        $builder
-        ->add('typeOfProspec', ChoiceType::class, [
-            'label' => 'Quel type de prospection mettez-vous en place ?',
-            'choices'  => [
-                'Téléphone' => 1,
-                'Mail' => 2,
-                'LinkedIn' => 3,
-                'Instagram' => 4,
-                'Facebook' => 5,
-                'Aucune' => 6,
-            ],
-            //'choice_label' => 'selector',
-            'multiple' => true,
-            'expanded' => true,
-            'by_reference' => false,
-        ])
-        ->add('prospecMoreClient', ChoiceType::class, [
-            'label' => 'Laquelle vous rapporte le plus de clients ? ',
-            'choices'  => [
-                'téléphone' => 1,
-                'Mail' => 2,
-                'LinkedIn' => 3,
-                'Instagram' => 4,
-                'Facebook' => 5,
-                'Aucune' => 6
-            ],
-            'multiple' => false,
-            'expanded' => true,
-            'by_reference' => false,
-        ])
-        ->add('numberClosPerMonth', ChoiceType::class, [
-            'label' => 'Combien de closing fetes-vous par mois ?',
-            'choices'  => [
-                '1-2 contrats' => 1,
-                '3-5 contrats' => 2,
-                '5-10 contrats' => 3,
-                '+10 contrats' => 4,
-                'Autre' => 5,
-            ],
-        ])
-        ->add('precisClosPerMonth', TextType::class, [
-            'label' => 'Si autre, pouvez-vous précisez ? '
-        ])
-        ->add('budOfProspPerMonth', ChoiceType::class, [
-            'label' => 'Quel est le budget que vous investissez/mois dans la prospection ? ',
-            'choices'  => [
-                '0-100 Euros' => 1,
-                '100-200 Euros' => 2,
-                '200-300 Euros' => 3,
-                '300-500 Euros' => 4,
-                '500-1K Euros' => 5,
-                '+1K Euros' => 6,
-                'Autre' => 7,
-            ],
-        ])
-        ->add('prcisBudProsMonth', TextType::class, [
-            'label' => 'Si autre, pouvez-vous précisez ? '
-        ])
-        ->add('analyseProspec', ChoiceType::class, [
-            'label' => 'Analysez-vous vos retours de campagne de prospection ? ',
-            'choices' => ['Oui' => 1, 'Non' => 2],
-            'multiple' => false,
-            'expanded' => true,
-            'by_reference' => false,
-            'required' => false,
-        ])
-        ->add('satisfiedOfRoi', ChoiceType::class, [
-            'label' => 'Etes-vous satisfait de votre ROI ? ',
-            'choices' => ['Oui' => 1, 'Non' => 2],
-            'multiple' => false,
-            'expanded' => true,
-            'by_reference' => false,
-            'required' => false,
-        ])
-        ->add('priorityCommercial', ChoiceType::class, [
-            'label' => 'Quelles sont vos priorités commerciales pour 12 mois à venir ?',
-            'choices'  => [
-                'Générer le plus de leads' => 1,
-                'Améliorer la satisfaction des clients' => 2,
-                'Augmenter la rétention des clients' => 3,
-                'Augmenter la notoriété de la marque' => 4,
-                'Conclure plus de transactions' => 5,
-                'Autre' => 6
-            ],
-            'multiple' => true,
-            'expanded' => true,
-            'by_reference' => false,
-        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

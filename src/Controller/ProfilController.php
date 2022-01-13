@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 /**
  * @Route("/profil")
@@ -47,7 +48,6 @@ class ProfilController extends AbstractController
         ]);
     }
 
-
     /**
      * @Route("/new", name="profil_new", methods={"GET", "POST"})
      * @isGranted("ROLE_USER")
@@ -67,7 +67,11 @@ class ProfilController extends AbstractController
             $entityManager->persist($profil);
             $entityManager->flush();
 
-            return $this->redirectToRoute('profil_index_customer', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute(
+                'profil_commercial_new',
+                ['profil' => $profil->getId()],
+                Response::HTTP_SEE_OTHER
+            );
         }
 
         return $this->render('profil/new.html.twig', [

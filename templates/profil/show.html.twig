@@ -9,6 +9,7 @@
 
 		{{ include('profil/_form_show.html.twig') }}
 
+		<a class="link-dark" href="{{ path('profil_commercial_show', {'id': profil.id}) }}"><button class="btn">{{ button_label|default('Suivant') }}</button></a>
 		{% if is_granted("ROLE_ADMIN") %}
 			<a class="link-dark" href="{{ path('profil_index') }}">back to list</a>
 		{% else %}
