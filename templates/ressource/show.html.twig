@@ -1,32 +1,45 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
 {% block title %}Ressource{% endblock %}
 
 {% block body %}
-    <section class='container'>
-        <h1>Ressource</h1>
+    <section class="container col-auto col-md-9 col-xl-10">
+        <h1>{{ ressource.name }}</h1>
 
         <table class="table">
             <tbody>
-                <tr>
-                    <th>Id</th>
-                    <td>{{ ressource.id }}</td>
-                </tr>
                 <tr>
                     <th>Description</th>
                     <td>{{ ressource.description }}</td>
                 </tr>
                 <tr>
                     <th>Lien</th>
-                    <td>{{ ressource.link }}</td>
+                    <td><a class="link-dark" href="{{ ressource.link }}">{{ ressource.link }}</a></td>
+                </tr>
+                <tr>
+                    {% if ressource.type == "image" %}
+                        <img id='showIMG' src="{{ vich_uploader_asset(ressource) }}" alt="{{ ressource.name }}" width="800">
+                    {% endif %}
+
+                    {% if ressource.type == "pdf" %}
+                        <iframe src="{{ vich_uploader_asset(ressource) }}" alt="{{ ressource.name }}" width="800" height="600"></iframe>
+                    {% endif %}
+
+                    {% if ressource.type == "video"%}
+                        <video controls width="800">
+                            <source src="{{ vich_uploader_asset(ressource) }}" alt="{{ ressource.name }}"
+                            type="video/mp4">
+                        </video>
+                    {% endif %}
                 </tr>
             </tbody>
         </table>
 
-        <a href="{{ path('ressource_index') }}">retour à la liste</a>
+        <a class="btn" href="{{ path('ressource_index') }}">retour à la liste</a>
+        </br></br>
 
-        <a href="{{ path('ressource_edit', {'id': ressource.id}) }}">modifier</a>
-
+        <a class="btn" href="{{ path('ressource_edit', {'id': ressource.id}) }}">modifier</a>
+        </br></br>
         {{ include('ressource/_delete_form.html.twig') }}
     </section>
 {% endblock %}

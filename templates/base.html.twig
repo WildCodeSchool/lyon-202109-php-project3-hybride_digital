@@ -21,13 +21,9 @@
 		{% include '_header.html.twig' %}
 		<div class="container-fluid">
 			{% for category, messages in app.flashes %}
-
 				{% for message in messages %}
-
 					<div class="alert alert-{{ category }}">
-
 						{{ message }}
-
 					</div>
 
 				{% endfor %}
@@ -35,7 +31,7 @@
 			{% endfor %}
 			<div class="row flex-nowrap"> {% block menu_list %}{% endblock %}{% block body %}{% endblock %}
 				</div>
-			</div>
+		</div>
 
-		</body>
-	</html>
+	</body>
+</html>
