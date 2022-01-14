@@ -1,4 +1,4 @@
-{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/customerBase.html.twig") %}
+{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/base.html.twig") %}
 
 {% block title %}Nouvel Audit 2/3
 {% endblock %}
@@ -9,6 +9,6 @@
 
 		{{ include('profil_commercial/_form.html.twig') }}
 
-		<a href="{{ path('profil_commercial_index') }}">back to list</a>
+		<a href="{{ path('profil_commercial_index') }}">retour à la liste</a>
 	</div>
 {% endblock %}

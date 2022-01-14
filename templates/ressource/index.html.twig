@@ -1,4 +1,4 @@
-{% extends 'admin/base.html.twig' %}
+{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/base.html.twig") %}
 
 {% block title %}Glossaire{% endblock %}
 
@@ -6,9 +6,9 @@
 
     <section class="container col-auto col-md-9 col-xl-10">
         <h1>Glossaire</h1>
-
+        {% if is_granted("ROLE_ADMIN") %}
         <a class="btn" href="{{ path('ressource_new') }}">Créer une nouvelle ressource</a>
-
+        {% endif %}
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -44,7 +44,9 @@
                     <td>
                         <a class="btn" href="{{ path('ressource_show', {'id': ressource.id}) }}">montrer</a>
                         </br></br>
+                        {% if is_granted("ROLE_ADMIN") %}
                         <a class="btn" href="{{ path('ressource_edit', {'id': ressource.id}) }}">modifier</a>
+                        {% endif %}                    
                     </td>
                 </tr>
             {% else %}

@@ -1,4 +1,4 @@
-{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/customerBase.html.twig") %}
+{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/base.html.twig") %}
 
 {% block title %}Edit ProfilMarketing
 {% endblock %}
@@ -7,9 +7,9 @@
 	<div class="container col-auto col-md-9 col-xl-10">
 		<h1>Edit ProfilMarketing</h1>
 
-		{{ include('profil_marketing/_form.html.twig', {'button_label': 'Update'}) }}
+		{{ include('profil_marketing/_form.html.twig', {'button_label': 'mettre à jour'}) }}
 
-		<a href="{{ path('profil_marketing_index') }}">back to list</a>
+		<a href="{{ path('profil_marketing_index') }}">retour à la liste</a>
 
 		{{ include('profil_marketing/_delete_form.html.twig') }}
 	</div>
