@@ -46,7 +46,7 @@
                         </br></br>
                         {% if is_granted("ROLE_ADMIN") %}
                         <a class="btn" href="{{ path('ressource_edit', {'id': ressource.id}) }}">modifier</a>
-                        {% endif %}                    
+                        {% endif %}
                     </td>
                 </tr>
             {% else %}

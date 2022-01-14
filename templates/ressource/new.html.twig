@@ -6,7 +6,7 @@
 <section class="container col-auto col-md-9 col-xl-10">
     <div>
         <h1>Créer une nouvelle ressource</h1>
-        
+
         {% if is_granted("ROLE_ADMIN") %}
         {{ include('ressource/_form.html.twig') }}
         </br>
