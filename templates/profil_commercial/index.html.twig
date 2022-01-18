@@ -1,11 +1,11 @@
-{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/customerBase.html.twig") %}
+{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/base.html.twig") %}
 
-{% block title %}ProfilCommercial index
+{% block title %}Profil Commercial index
 {% endblock %}
 
 {% block body %}
 	<div class="container col-auto col-md-9 col-xl-10">
-		<h1>ProfilCommercial index</h1>
+		<h1>Profil Commercial index</h1>
 
 		<table class="table">
 			<thead>
@@ -47,18 +47,18 @@
 						<td>{{ profil_commercial.priorityCommercial ? profil_commercial.priorityCommercial|json_encode : '' }}</td>
 						<td>{{ profil_commercial.prcisPrioCommercial }}</td>
 						<td>
-							<a href="{{ path('profil_commercial_show', {'id': profil_commercial.id}) }}">show</a>
-							<a href="{{ path('profil_commercial_edit', {'id': profil_commercial.id}) }}">edit</a>
+							<a href="{{ path('profil_commercial_show', {'id': profil_commercial.id}) }}">montrer</a>
+							<a href="{{ path('profil_commercial_edit', {'id': profil_commercial.id}) }}">modifier</a>
 						</td>
 					</tr>
 				{% else %}
 					<tr>
-						<td colspan="16">no records found</td>
+						<td colspan="16">pas de données</td>
 					</tr>
 				{% endfor %}
 			</tbody>
 		</table>
 
-		<a href="{{ path('profil_commercial_new') }}">Create new</a>
+		<a href="{{ path('profil_commercial_new') }}">créer un nouveau</a>
 	</div>
 {% endblock %}

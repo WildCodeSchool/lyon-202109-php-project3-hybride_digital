@@ -6,8 +6,8 @@
 	{link: path("admin_home"), bi: "grid", text: "Menu Principal"},
 	{link: path("user_index"), bi: "person", text: "Gestion Utilisateurs"},
 	{link: path("profil_index"), bi: "journal-text", text: "Gestion Audits"},
-	{link: "#", bi: "envelope", text: "Gestion des Ressources"},
-]
-%}
+	{link: "/ressource", bi: "envelope", text: "Gestion du Glossaire"},
+] %}
 	{% include "template_menu.html.twig" with menu_list %}
 {% endblock %}
+

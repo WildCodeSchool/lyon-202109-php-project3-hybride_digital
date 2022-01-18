@@ -65,6 +65,7 @@ class RegistrationController extends AbstractController
                         ]
                     ));
                 $mailer->send($email);
+                $this->addFlash('success', "nouvel utilisateur créé!");
             }
 
             return $this->redirectToRoute('app_register', [], Response::HTTP_SEE_OTHER);

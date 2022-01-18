@@ -15,13 +15,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Form\FormError;
 
 /**
- * @Route("/ressource")
- * @IsGranted("ROLE_ADMIN")
+ * @Route("/ressource", name="ressource")
+ * @IsGranted("ROLE_USER")
  */
 class RessourceController extends AbstractController
 {
     /**
-     * @Route("/", name="ressource_index", methods={"GET"})
+     * @Route("/", name="_index", methods={"GET"})
      */
     public function index(RessourceRepository $ressourceRepository): Response
     {
@@ -31,7 +31,8 @@ class RessourceController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="ressource_new", methods={"GET", "POST"})
+     * @Route("/new", name="_new", methods={"GET", "POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request, EntityManagerInterface $entityManager, ControlUpload $controlUpload): Response
     {
@@ -64,7 +65,7 @@ class RessourceController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="ressource_show", methods={"GET"})
+     * @Route("/{id}", name="_show", methods={"GET"})
      */
     public function show(Ressource $ressource): Response
     {
@@ -74,7 +75,8 @@ class RessourceController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="ressource_edit", methods={"GET", "POST"})
+     * @Route("/{id}/edit", name="_edit", methods={"GET", "POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(
         Request $request,
@@ -113,7 +115,8 @@ class RessourceController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="ressource_delete", methods={"POST"})
+     * @Route("/{id}", name="_delete", methods={"POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Ressource $ressource, EntityManagerInterface $entityManager): Response
     {
