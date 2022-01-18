@@ -60,6 +60,16 @@ class Ressource
      */
     private ?string $type;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Action::class, mappedBy="ressource")
+     */
+    private Collection $actions;
+
+    public function __construct()
+    {
+        $this->actions = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -148,6 +158,33 @@ class Ressource
     public function setType(?string $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Action[]
+     */
+    public function getActions(): Collection
+    {
+        return $this->actions;
+    }
+
+    public function addAction(Action $action): self
+    {
+        if (!$this->actions->contains($action)) {
+            $this->actions[] = $action;
+            $action->addRessource($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAction(Action $action): self
+    {
+        if ($this->actions->removeElement($action)) {
+            $action->removeRessource($this);
+        }
 
         return $this;
     }
