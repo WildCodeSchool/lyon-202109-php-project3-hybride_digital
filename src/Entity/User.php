@@ -111,9 +111,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private ?SocialMedia $socialMedias;
 
+    /**
+     * @ORM\OneToMany(targetEntity=RoadmapCheck::class, mappedBy="user", orphanRemoval=true)
+     */
+    private Collection $roadmapChecks;
+
     public function __construct()
     {
         $this->profils = new ArrayCollection();
+        $this->roadmapChecks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -384,6 +390,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $socialMedias->setUser($this);
         }
         $this->socialMedias = $socialMedias;
+        return $this;
+    }
+
+    /**
+     * @return Collection|RoadmapCheck[]
+     */
+    public function getRoadmapChecks(): Collection
+    {
+        return $this->roadmapChecks;
+    }
+
+    public function addRoadmapCheck(RoadmapCheck $roadmapCheck): self
+    {
+        if (!$this->roadmapChecks->contains($roadmapCheck)) {
+            $this->roadmapChecks[] = $roadmapCheck;
+            $roadmapCheck->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRoadmapCheck(RoadmapCheck $roadmapCheck): self
+    {
+        if ($this->roadmapChecks->removeElement($roadmapCheck)) {
+            // set the owning side to null (unless already changed)
+            if ($roadmapCheck->getUser() === $this) {
+                $roadmapCheck->setUser(null);
+            }
+        }
+
         return $this;
     }
 }
