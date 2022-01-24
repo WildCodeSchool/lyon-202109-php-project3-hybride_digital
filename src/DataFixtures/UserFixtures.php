@@ -17,6 +17,7 @@ class UserFixtures extends Fixture
     }
     public function load(ObjectManager $manager): void
     {
+        $key = 0;
         $newUser = new User();
         $newUser->setEmail('jcriotte69@gmail.com');
         $newUser->setFirstname('Jean-Christophe');
@@ -31,9 +32,11 @@ class UserFixtures extends Fixture
         );
         $newUser->setPassword($hashedPassword);
         $manager->persist($newUser);
+        $this->addReference('user_' . $key, $newUser);
 
         $manager->flush();
 
+        $key++;
         $newUser = new User();
         $newUser->setEmail('client69@gmail.com');
         $newUser->setFirstname('Harry');
@@ -48,6 +51,7 @@ class UserFixtures extends Fixture
         );
         $newUser->setPassword($hashedPassword);
         $manager->persist($newUser);
+        $this->addReference('user_' . $key, $newUser);
 
         $manager->flush();
     }

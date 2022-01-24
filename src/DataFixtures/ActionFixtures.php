@@ -48,8 +48,7 @@ class ActionFixtures extends Fixture
     public function getDependencies()
     {
         return [
-            RessourceFixtures::class,
-            StepFixtures::class,
+            RessourceFixtures::class
         ];
     }
 }
