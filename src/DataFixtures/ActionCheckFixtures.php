@@ -7,10 +7,8 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
-
 class ActionCheckFixtures extends Fixture implements DependentFixtureInterface
 {
-    
     public const ACTIONCHECK = [
         [0, 0, false],
         [1, 1, false],
@@ -19,8 +17,8 @@ class ActionCheckFixtures extends Fixture implements DependentFixtureInterface
     ];
 
     public function load(ObjectManager $manager): void
-    {   
-        foreach (self::ACTIONCHECK as $key => $actionCheckTab) {
+    {
+        foreach (self::ACTIONCHECK as $actionCheckTab) {
             $actionCheck = new ActionCheck();
 
             $actionCheck->setAction($this->getReference('action_' . $actionCheckTab[0]));

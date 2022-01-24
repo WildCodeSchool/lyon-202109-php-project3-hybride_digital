@@ -15,22 +15,26 @@ class ActionFixtures extends Fixture implements DependentFixtureInterface
          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est.', [0]],
+          Excepteur sint occaecat cupidatat non proident,
+           sunt in culpa qui officia deserunt mollit anim id est.', [0]],
         ['Modification compte facebook', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
         sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est labo', [1]],
+          Excepteur sint occaecat cupidatat non proident,
+           sunt in culpa qui officia deserunt mollit anim id est labo', [1]],
         ['Création compte instagram', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
         incididunt ut labore et dolore magna aliqua.
          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est labo.', [2]],
+          Excepteur sint occaecat cupidatat non proident,
+           sunt in culpa qui officia deserunt mollit anim id est labo.', [2]],
         ['Modification compte instagram', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod t
         incididunt ut labore et dolore magna aliqua.
          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est l.', [3]],
+          Excepteur sint occaecat cupidatat non proident,
+           sunt in culpa qui officia deserunt mollit anim id est l.', [3]],
     ];
 
     public function load(ObjectManager $manager): void
@@ -40,7 +44,7 @@ class ActionFixtures extends Fixture implements DependentFixtureInterface
 
             $action->setName($actionTab[0]);
             $action->setText($actionTab[1]);
-            
+
 
             foreach ($actionTab[2] as $ressourceId) {
                 $action->addRessource($this->getReference('ressource_' . $ressourceId));
@@ -48,7 +52,7 @@ class ActionFixtures extends Fixture implements DependentFixtureInterface
 
             $manager->persist($action);
             $this->addReference('action_' . ($key), $action);
-        }        
+        }
         $manager->flush();
     }
 
