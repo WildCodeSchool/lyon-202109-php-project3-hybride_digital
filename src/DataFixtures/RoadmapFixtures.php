@@ -13,7 +13,7 @@ class RoadmapFixtures extends Fixture implements DependentFixtureInterface
     {
         $newRoadmap = new Roadmap();
         $newRoadmap->setName('Reseaux Sociaux');
-        $newRoadmap->addStep($this->getReference('facebook'));
+        $newRoadmap->addStep($this->getReference('Facebook'));
         $newRoadmap->addStep($this->getReference('Instagram'));
 
         $manager->persist($newRoadmap);
