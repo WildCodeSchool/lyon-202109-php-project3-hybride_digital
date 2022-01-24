@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Etape{% endblock %}
+
+{% block body %}
+    <section class="container col-auto col-md-9 col-xl-10">
+        <div>   
+            <h1>Etape</h1>
+
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Numéro</th>
+                        <td>{{ step.id }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <td>{{ step.name }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <a href="{{ path('step_index') }}">retour à la liste</a>
+
+            <a href="{{ path('step_edit', {'id': step.id}) }}">modifier</a>
+
+            {{ include('step/_delete_form.html.twig') }}
+        </div>
+    </section>
+{% endblock %}

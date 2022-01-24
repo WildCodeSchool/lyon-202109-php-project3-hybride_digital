@@ -1,0 +1,15 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Création d'une nouvelle étape{% endblock %}
+
+{% block body %}
+    <section class="container col-auto col-md-9 col-xl-10">
+        <div>
+            <h1>Création d'une nouvelle étape</h1>
+
+            {{ include('step/_form.html.twig') }}
+
+            <a class="btn" href="{{ path('step_index') }}">retour à la liste</a>
+        </div>
+    </section>
+{% endblock %}
