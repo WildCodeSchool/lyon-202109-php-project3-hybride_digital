@@ -1,0 +1,11 @@
+{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/base.html.twig") %}
+{% block body %}
+<div class="container col-auto col-md-9 col-xl-10">
+<h2 class="text-center mb-5">{{ action.name }}</h2>
+<div class="container">
+<article>{{ action.text }}</article>
+</div>
+<div class="ressources"></div>
+
+</div>
+{% endblock %}
