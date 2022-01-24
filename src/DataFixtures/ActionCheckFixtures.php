@@ -11,9 +11,9 @@ class ActionCheckFixtures extends Fixture implements DependentFixtureInterface
 {
     public const ACTIONCHECK = [
         [0, 0, false],
-        [1, 1, false],
-        [2, 2, false],
-        [3, 3, false]
+        [1, 0, false],
+        [2, 1, false],
+        [3, 1, false]
     ];
 
     public function load(ObjectManager $manager): void
@@ -35,6 +35,7 @@ class ActionCheckFixtures extends Fixture implements DependentFixtureInterface
         return [
             RessourceFixtures::class,
             ActionFixtures::class,
+            StepCheckFixtures::class,
         ];
     }
 }
