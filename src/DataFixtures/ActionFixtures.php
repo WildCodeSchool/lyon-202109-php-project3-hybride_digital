@@ -4,9 +4,10 @@ namespace App\DataFixtures;
 
 use App\Entity\Action;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class ActionFixtures extends Fixture
+class ActionFixtures extends Fixture implements DependentFixtureInterface
 {
     public const ACTION = [
         ['Création compte facebook', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,
@@ -49,7 +50,6 @@ class ActionFixtures extends Fixture
     {
         return [
             RessourceFixtures::class,
-            StepFixtures::class,
         ];
     }
 }
