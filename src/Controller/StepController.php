@@ -83,7 +83,7 @@ class StepController extends AbstractController
      */
     public function delete(Request $request, Step $step, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$step->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $step->getId(), (string)$request->request->get('_token'))) {
             $entityManager->remove($step);
             $entityManager->flush();
         }

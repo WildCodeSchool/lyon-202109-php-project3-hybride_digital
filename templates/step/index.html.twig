@@ -1,38 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}La liste des étapes{% endblock %}
+{% block title %}La liste des étapes
+{% endblock %}
 
 {% block body %}
-    <section class="container col-auto col-md-9 col-xl-10">
-        <div>   
-            <h1>La liste des étapes</h1>
-        
-        <a class="btn" href="{{ path('step_new') }}">Création d'une nouvelle étape</a>
-        
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Nom</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for step in steps %}
-                <tr>
-                    <td>{{ step.id }}</td>
-                    <td>{{ step.name }}</td>
-                    <td>
-                        <a class="btn" href="{{ path('step_show', {'id': step.id}) }}">montrer</a>
-                        <a class="btn" href="{{ path('step_edit', {'id': step.id}) }}">modifier</a>
-                    </td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="3">pas de données</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>        
-        </div>
-    </section>
+	<section class="container col-auto col-md-9 col-xl-10">
+		<div>
+			<h1>La liste des étapes</h1>
+
+			<a class="btn" href="{{ path('step_new') }}">Création d'une nouvelle étape</a>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Nom</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for step in steps %}
+						<tr>
+							<td>{{ step.id }}</td>
+							<td>{{ step.name }}</td>
+							<td>
+								<a class="btn" href="{{ path('step_show', {'id': step.id}) }}">montrer</a>
+								<a class="btn" href="{{ path('step_edit', {'id': step.id}) }}">modifier</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="3">pas de données</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</section>
 {% endblock %}
