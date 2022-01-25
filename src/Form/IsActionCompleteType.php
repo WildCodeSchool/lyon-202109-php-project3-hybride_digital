@@ -13,8 +13,6 @@ class IsActionCompleteType extends AbstractType
     {
         $builder
             ->add('isComplete')
-            ->add('stepCheck')
-            ->add('action')
         ;
     }
 
