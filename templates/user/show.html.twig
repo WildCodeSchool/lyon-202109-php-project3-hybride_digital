@@ -1,0 +1,69 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Visualisation d'un compte utilisateur
+{% endblock %}
+
+{% block body %}
+	<div class="container col-auto col-md-9 col-xl-10">
+		<h1>Compte utilisateur
+			{{ user.firstname }}
+			{{ user.lastname }}</h1>
+
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>email :
+					</th>
+					<td>{{ user.email }}</td>
+				</tr>
+				<tr>
+					<th>Nom de la société :
+					</th>
+					<td>{{ user.companyname }}</td>
+				</tr>
+				<tr>
+					<th>Nom de domaine de la société :
+					</th>
+					<td>{{ user.domainname }}</td>
+				</tr>
+				<tr>
+					<th>Secteur d'activité :
+					</th>
+					<td>{{ user.businesssector }}</td>
+				</tr>
+				<tr>
+					<th>Numéro de téléphone :
+					</th>
+					<td>{{ user.phonenumber }}</td>
+				</tr>
+				<tr>
+					<th>Adresse :
+					</th>
+					<td>{{ user.adress }}</td>
+				</tr>
+				<tr>
+					<th>Code postal :
+					</th>
+					<td>{{ user.postcode }}</td>
+				</tr>
+				<tr>
+					<th>Ville :
+					</th>
+					<td>{{ user.city }}</td>
+				</tr>
+				<tr>
+					<th>Montant de votre budget publicitaire :
+					</th>
+					<td>{{ user.advertisingbudget }}</td>
+				</tr>
+				<tr>
+					<th>Zone de chalandise :
+					</th>
+					<td>{{ user.marketarea }}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<a class="link-dark" href="{{ path('user_index') }}">Retour à la liste des utilisateur</a>
+	</div>
+{% endblock %}

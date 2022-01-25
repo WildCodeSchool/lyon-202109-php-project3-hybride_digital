@@ -26,6 +26,9 @@
     "composer/package-versions-deprecated": {
         "version": "1.11.99.1"
     },
+    "composer/pcre": {
+        "version": "1.0.0"
+    },
     "composer/xdebug-handler": {
         "version": "1.4.6"
     },
@@ -127,6 +130,9 @@
     "egulias/email-validator": {
         "version": "3.1.1"
     },
+    "fakerphp/faker": {
+        "version": "v1.17.0"
+    },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.3"
     },
@@ -138,6 +144,9 @@
     },
     "jakub-onderka/php-console-color": {
         "version": "v0.2"
+    },
+    "jms/metadata": {
+        "version": "2.6.1"
     },
     "laminas/laminas-code": {
         "version": "4.2.2"
@@ -162,6 +171,9 @@
     },
     "pdepend/pdepend": {
         "version": "2.9.1"
+    },
+    "php-parallel-lint/php-console-color": {
+        "version": "v0.3"
     },
     "php-parallel-lint/php-console-highlighter": {
         "version": "v0.4"
@@ -659,6 +671,18 @@
     },
     "twig/twig": {
         "version": "v3.3.0"
+    },
+    "vich/uploader-bundle": {
+        "version": "1.19",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.7",
+            "ref": "c4f5755b37fb65b9c6a3cbdae91205c15a137ed4"
+        },
+        "files": [
+            "config/packages/vich_uploader.yaml"
+        ]
     },
     "webmozart/assert": {
         "version": "1.10.0"

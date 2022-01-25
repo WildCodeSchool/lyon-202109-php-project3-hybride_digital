@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block menu_list %}
+	{% set menu_list =
+[
+	{link: path("profil_index_customer"), bi: "clipboard-data", text: "Mes Audits"},
+	{link: "#", bi: "diagram-3", text: "Mes Actions"},
+	{link: "/ressource", bi: "mortarboard", text: "Glossaire"},
+	{link: "/profile/", bi: "gear", text: "Profil"},
+
+]
+%}
+	{% include "template_menu.html.twig" with menu_list %}
+{% endblock %}
