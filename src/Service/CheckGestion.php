@@ -36,4 +36,9 @@ class CheckGestion
     {
         return true;
     }
+
+    public function isAllStepCheck(): bool
+    {
+        return true;
+    }
 }
