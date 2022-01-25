@@ -2,43 +2,52 @@
 
 namespace App\Service;
 
-use App\Entity\Action;
-use App\Entity\User;
+use App\Entity\ActionCheck;
+use App\Entity\RoadmapCheck;
+use App\Entity\StepCheck;
+use Doctrine\ORM\EntityManagerInterface;
 
 class CheckGestion
 {
     public function checkAction(
-        Action $action,
-        User $user
+        ActionCheck $actionCheck,
+        EntityManagerInterface $entityManager
     ): void {
-        //il faut identifier le step et vérifier si tous les check des checkAction
-        //sont à true et si oui alors le stepcheck passe à true
-        // $this->topCheck = false;
-        // $actionChecks = $action->getActionChecks();
-        // foreach ($actionChecks as $actionCheck) {
-        //     if ($actionCheck->getIsComplete()) {
-        //         $this->topCheck = true;
-        //     }
-        // }
+        if ($actionCheck->getStepCheck()) {
+            $stepCheck = $actionCheck->getStepCheck();
 
-        // $stepCheck = (object) $actionCheck->getStepCheck();
-        // if ($this->topCheck === true) {
-        //     $stepCheck->setIsComplete(true);
-        // }
-
-        //a partir du user je recupere la roadmapCheck pour récuperer le stepCheck
-        //puis il faut balayer les actionsCheck
-        // $raodmapCheck = (object) $user->getRoadmapChecks();
-        // $stepCheck = $raodmapCheck->getStepChecks();
+            if (CheckGestion::isAllActionCheck($stepCheck)) {
+                $stepCheck->setIsComplete(true);
+                if ($stepCheck->getRoadmapCheck()) {
+                    $raodmapCheck = $stepCheck->getRoadmapCheck();
+                    if (CheckGestion::isAllStepCheck($raodmapCheck)) {
+                        $raodmapCheck->setIsComplete(true);
+                    }
+                }
+                $entityManager->flush();
+            }
+        }
     }
 
-    public function isAllActionCheck(): bool
+    public static function isAllActionCheck(StepCheck $stepCheck): bool
     {
+        $actionChecks = $stepCheck->getActionChecks();
+        foreach ($actionChecks as $actionCheck) {
+            if (!$actionCheck->getIsComplete()) {
+                return false;
+            }
+        }
         return true;
     }
 
-    public function isAllStepCheck(): bool
+    public static function isAllStepCheck(RoadmapCheck $roadmapCheck): bool
     {
+        $stepChecks = $roadmapCheck->getStepChecks();
+        foreach ($stepChecks as $stepCheck) {
+            if (!$stepCheck->getIsComplete()) {
+                return false;
+            }
+        }
         return true;
     }
 }
