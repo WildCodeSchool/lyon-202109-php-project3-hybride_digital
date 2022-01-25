@@ -16,7 +16,7 @@ class StepFixtures extends Fixture implements DependentFixtureInterface
         $newStep->addAction($this->getReference('action_0'));
         $newStep->addAction($this->getReference('action_1'));
         $manager->persist($newStep);
-        $this->addReference('facebook', $newStep);
+        $this->addReference('Facebook', $newStep);
 
         $newStep = new Step();
         $newStep->setName('Instagram');
