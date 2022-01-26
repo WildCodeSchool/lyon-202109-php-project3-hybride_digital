@@ -1,11 +1,14 @@
 {% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/base.html.twig") %}
 
-{% block title %}Création d'une Roadmap{% endblock %}
+{% block title %}Création d'une Roadmap
+{% endblock %}
 
 {% block body %}
-    <h1>Création d'une Roadmap</h1>
+	<div class="container col-auto col-md-9 col-xl-10">
+		<h1>Création d'une Roadmap</h1>
 
-    {{ include('roadmap/_form.html.twig') }}
+		{{ include('roadmap/_form.html.twig') }}
 
-    <a href="{{ path('roadmap_index') }}">back to list</a>
+		<a href="{{ path('roadmap_index') }}">back to list</a>
+	</div>
 {% endblock %}
