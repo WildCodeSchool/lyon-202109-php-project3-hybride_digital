@@ -9,9 +9,15 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class CheckGestion
 {
+    private EntityManagerInterface $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
     public function checkAction(
-        ActionCheck $actionCheck,
-        EntityManagerInterface $entityManager
+        ActionCheck $actionCheck
     ): void {
         if ($actionCheck->getStepCheck()) {
             $stepCheck = $actionCheck->getStepCheck();
@@ -24,7 +30,7 @@ class CheckGestion
                         $raodmapCheck->setIsComplete(true);
                     }
                 }
-                $entityManager->flush();
+                $this->entityManager->flush();
             }
         }
     }
