@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/step")
+ * @IsGranted("ROLE_USER")
  */
 class StepController extends AbstractController
 {
@@ -28,6 +29,7 @@ class StepController extends AbstractController
 
     /**
      * @Route("/new", name="step_new", methods={"GET", "POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -60,6 +62,7 @@ class StepController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="step_edit", methods={"GET", "POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Step $step, EntityManagerInterface $entityManager): Response
     {
@@ -80,6 +83,7 @@ class StepController extends AbstractController
 
     /**
      * @Route("/{id}", name="step_delete", methods={"POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Step $step, EntityManagerInterface $entityManager): Response
     {

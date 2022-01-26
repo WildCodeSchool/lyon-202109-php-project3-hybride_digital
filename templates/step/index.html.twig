@@ -1,9 +1,10 @@
-{% extends 'admin/base.html.twig' %}
+{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/base.html.twig") %}
 
 {% block title %}La liste des étapes
 {% endblock %}
 
 {% block body %}
+	{% if is_granted("ROLE_ADMIN") %}
 	<section class="container col-auto col-md-9 col-xl-10">
 		<div>
 			<h1>La liste des étapes</h1>
@@ -14,6 +15,7 @@
 				<thead>
 					<tr>
 						<th>Numéro</th>
+						<th>Etapes</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
@@ -22,6 +24,9 @@
 						<tr>
 							<td>{{ step.id }}</td>
 							<td>{{ step.name }}</td>
+							<td>{% for action in step.actions %}
+							{{ action.name }}</br>
+							{% endfor %}</td>
 							<td>
 								<a class="btn" href="{{ path('step_show', {'id': step.id}) }}">montrer</a>
 								<a class="btn" href="{{ path('step_edit', {'id': step.id}) }}">modifier</a>
@@ -36,4 +41,5 @@
 			</table>
 		</div>
 	</section>
+	{% endif %}
 {% endblock %}

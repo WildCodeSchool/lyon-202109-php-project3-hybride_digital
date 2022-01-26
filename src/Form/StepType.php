@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Action;
 use App\Entity\Step;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -13,8 +14,13 @@ class StepType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('actions')
-            ->add('roadmaps')
+            ->add('actions', null, [
+                'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+                'by_reference' => false,
+            ])
+            ->add('roadmaps', null, ['choice_label' => 'name'])
         ;
     }
 
