@@ -20,6 +20,7 @@ class ActionController extends AbstractController
 {
     /**
      * @Route("/", name="index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(ActionRepository $actionRepository): Response
     {
@@ -52,7 +53,8 @@ class ActionController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="show", methods={"GET"})
+     * @Route("/admin/{id}", name="show", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function show(Action $action): Response
     {
