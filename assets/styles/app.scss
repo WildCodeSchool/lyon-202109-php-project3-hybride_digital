@@ -29,12 +29,16 @@ h1 {
 }
 
 .btn {
+    display: flex;
     border-radius: 35px;
     border-style: solid;
     border-width: 3px;
     border-color: $dark;
     font-family: 'Aldrich', sans-serif;
     width: 10rem;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .invisible {
