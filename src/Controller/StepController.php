@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\ActionCheck;
 use App\Entity\Step;
+use App\Entity\StepCheck;
 use App\Form\StepType;
 use App\Repository\StepRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -10,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/step")
@@ -51,12 +54,28 @@ class StepController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="step_show", methods={"GET"})
+     * @Route("/admin/{id}", name="step_show", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function show(Step $step): Response
     {
         return $this->render('step/show.html.twig', [
             'step' => $step,
+        ]);
+    }
+
+    /**
+     * @Route("/user/{id}", name="step_show", methods={"GET"})
+     */
+    public function showUser(StepCheck $stepCheck): Response
+    {   
+        $step=$stepCheck->getStep();
+        $actionChecks=$stepCheck->getActionChecks();
+
+
+        return $this->render('step/showUser.html.twig', [
+            'step' => $step,
+            'action_checks' => $actionChecks
         ]);
     }
 

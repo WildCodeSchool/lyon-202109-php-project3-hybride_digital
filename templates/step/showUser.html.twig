@@ -1,0 +1,24 @@
+{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/base.html.twig") %}
+
+{% block title %}Etape
+{% endblock %}
+
+{% block body %}
+	<section class="container col-auto col-md-9 col-xl-10">
+		<h2>{{ step.name }}</h2>
+		<div>
+			<ul class="mt-5">
+				{% for action_check in action_checks %}
+					<li>
+						<a href="#">{{ action_check.action.name }}</a>
+						{% if action_check.isComplete %}
+							<img src="{{ asset('build/images/ok.png') }}" class="imgcheck"/>
+						{% else %}
+							<img src="{{ asset('build/images/work.png') }}" class='imgcheck'/>
+						{% endif %}
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</section>
+{% endblock %}

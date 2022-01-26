@@ -1,10 +1,9 @@
 {% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/base.html.twig") %}
 
-{% block title %}Etape
-{% endblock %}
+{% block title %}Etape{% endblock %}
 
 {% block body %}
-	{% if is_granted("ROLE_ADMIN") %}
+
 	<section class="container col-auto col-md-9 col-xl-10">
 		<div>
 			<h1>Etape</h1>
@@ -35,23 +34,5 @@
 			{{ include('step/_delete_form.html.twig') }}
 		</div>
 	</section>
-	{% endif %}
 
-	{% if is_granted("ROLE_USER") %}
-	<section>
-			<h2></h2>
-		{% for action in step.actions %}
-			<div>
-			{{ action.name }}
-			</div>
-			<div>
-			{% if action.check.isCompleted %}
-			<img src="{{ asset('images/ok.png') }}">
-			{% else %}
-			<img src="{{ asset('images/work.png') }}">
-			{% endif %}
-			</div>
-		{% endfor %}
-	</section>
-	{% endif %}
 {% endblock %}
