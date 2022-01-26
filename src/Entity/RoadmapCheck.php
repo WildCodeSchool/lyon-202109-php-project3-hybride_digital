@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\RoadmapCheckRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -28,6 +29,7 @@ class RoadmapCheck
     /**
      * @ORM\ManyToOne(targetEntity=Roadmap::class, inversedBy="roadmapChecks")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\Type("App\Entity\Roadmap")
      */
     private ?Roadmap $roadmap;
 
