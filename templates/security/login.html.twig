@@ -6,7 +6,7 @@
 <div class="welcome">
 
     <main class='container-fluid'>
-        <form method="post" class="form_welcome">
+        <form method="post" class="form_welcome d-flex flex-column">
             {% if error %}
                 <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
@@ -26,23 +26,10 @@
             <input type="hidden" name="_csrf_token"
                 value="{{ csrf_token('authenticate') }}"
             >
-
-            {#
-                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-                See https://symfony.com/doc/current/security/remember_me.html
-
-                <div class="checkbox mb-3">
-                    <label>
-                        <input type="checkbox" name="_remember_me"> Remember me
-                    </label>
-                </div>
-            #}
-            </br>
-            <button class="btn btn-lg btn-light text-dark" type="submit">
+            <button class="btn btn-lg btn-light text-dark align-self-center mt-5" type="submit">
                 Connexion
             </button>
-            </br></br></br>
-            <a class="btn btn-light text-dark" href="mailto:contact@hybride-digital.com">Contact</a>
+            <a class="btn btn-light text-dark align-self-center contact" href="mailto:contact@hybride-digital.com">Contact</a>
         </form>
 
     </main>
