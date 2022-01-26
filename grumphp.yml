@@ -25,3 +25,5 @@ grumphp:
                 - 'phpmd.xml'
         twigcs:
             path: 'templates'
+            exclude: 
+                - '\templates\passwordUpdate.html.twig'
