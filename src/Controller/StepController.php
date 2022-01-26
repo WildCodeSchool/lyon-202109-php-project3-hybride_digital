@@ -68,10 +68,10 @@ class StepController extends AbstractController
      * @Route("/user/{id}", name="step_show", methods={"GET"})
      */
     public function showUser(StepCheck $stepCheck): Response
-    {   
-        $step=$stepCheck->getStep();
-        $actionChecks=$stepCheck->getActionChecks();
-        $stepCheck=$stepCheck->getIsComplete();
+    {
+        $step = $stepCheck->getStep();
+        $actionChecks = $stepCheck->getActionChecks();
+        $stepCheck = $stepCheck->getIsComplete();
 
         return $this->render('step/showUser.html.twig', [
             'step' => $step,
