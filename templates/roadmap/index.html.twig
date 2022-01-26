@@ -1,0 +1,35 @@
+{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/base.html.twig") %}
+
+{% block title %}Liste des Roadmap{% endblock %}
+
+{% block body %}
+    <h1>Liste des Roadmap</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for roadmap in roadmaps %}
+            <tr>
+                <td>{{ roadmap.id }}</td>
+                <td>{{ roadmap.name }}</td>
+                <td>
+                    <a href="{{ path('roadmap_show', {'id': roadmap.id}) }}">show</a>
+                    <a href="{{ path('roadmap_edit', {'id': roadmap.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('roadmap_new') }}">Create new</a>
+{% endblock %}
