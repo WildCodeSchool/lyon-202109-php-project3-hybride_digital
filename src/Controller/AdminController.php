@@ -20,4 +20,12 @@ class AdminController extends AbstractController
     {
         return $this->render("admin/index.html.twig");
     }
+
+    /**
+     * @Route("/gestionRoadmap", name="gestionRoadmap")
+     */
+    public function gestionRoadmap(): Response
+    {
+        return $this->render("admin/gestionRoadmap.html.twig");
+    }
 }
