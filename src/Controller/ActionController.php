@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Action;
+use App\Entity\ActionCheck;
+use App\Form\IsActionCompleteType;
 use App\Form\ActionType;
 use App\Repository\ActionRepository;
+use App\Service\CheckGestion;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -96,5 +99,36 @@ class ActionController extends AbstractController
         }
 
         return $this->redirectToRoute('action_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
+     * @Route("/user/{id}", name="showUser", methods={"GET", "POST"})
+     */
+    public function showUser(
+        Action $action,
+        ActionCheck $actionCheck,
+        Request $request,
+        EntityManagerInterface $entityManager,
+        CheckGestion $checkGestion
+    ): Response {
+        $action = $actionCheck->getAction();
+
+        $form = $this->createForm(IsActionCompleteType::class, $actionCheck);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            if ($form['isComplete']) {
+                $actionCheck->setIsComplete(true);
+            } else {
+                $actionCheck->setIsComplete(false);
+            }
+            $entityManager->flush();
+            $checkGestion->checkAction($actionCheck);
+
+            return $this->redirectToRoute('customer_home');
+        }
+        return $this->render('action/showUser.html.twig', [
+            'action' => $action,
+            'form' => $form->createView()
+        ]);
     }
 }

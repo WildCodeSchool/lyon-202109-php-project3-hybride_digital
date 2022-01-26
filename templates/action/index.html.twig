@@ -6,10 +6,10 @@
 {% block body %}
 	<section class="container col-auto col-md-9 col-xl-10">
 		<h1>Action index</h1>
-        <div class="d-flex flex-row-reverse">
-		<a class="btn btn-light mt-1" href="{# path('action_new') #}#">Retour au Menu</a>
-		<a class="btn btn-light mt-1" href="{{ path('action_new') }}">Nouvelle Action</a>
-        </div>
+		<div class="d-flex flex-row-reverse">
+			<a class="btn btn-light mt-1" href="{# path('action_new') #}#">Retour au Menu</a>
+			<a class="btn btn-light mt-1" href="{{ path('action_new') }}">Nouvelle Action</a>
+		</div>
 
 		<table class="table">
 			<thead>
@@ -36,7 +36,5 @@
 				{% endfor %}
 			</tbody>
 		</table>
-
 	</section>
-
 {% endblock %}
