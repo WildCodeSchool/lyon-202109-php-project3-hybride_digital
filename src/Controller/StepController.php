@@ -71,11 +71,12 @@ class StepController extends AbstractController
     {   
         $step=$stepCheck->getStep();
         $actionChecks=$stepCheck->getActionChecks();
-
+        $stepCheck=$stepCheck->getIsComplete();
 
         return $this->render('step/showUser.html.twig', [
             'step' => $step,
-            'action_checks' => $actionChecks
+            'action_checks' => $actionChecks,
+            'step_check' => $stepCheck,
         ]);
     }
 
