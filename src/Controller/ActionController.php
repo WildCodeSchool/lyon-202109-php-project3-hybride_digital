@@ -19,9 +19,9 @@ use Symfony\Component\HttpFoundation\Request;
 class ActionController extends AbstractController
 {
     /**
-     * @Route("/{id}", name="show", methods={"GET", "POST"})
+     * @Route("/{id}", name="showUser", methods={"GET", "POST"})
      */
-    public function show(
+    public function showUser(
         Action $action,
         ActionCheck $actionCheck,
         Request $request,
