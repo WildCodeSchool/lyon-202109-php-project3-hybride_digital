@@ -105,7 +105,6 @@ class ActionController extends AbstractController
      * @Route("/user/{id}", name="showUser", methods={"GET", "POST"})
      */
     public function showUser(
-        Action $action,
         ActionCheck $actionCheck,
         Request $request,
         EntityManagerInterface $entityManager,
@@ -124,9 +123,10 @@ class ActionController extends AbstractController
             $entityManager->flush();
             $checkGestion->checkAction($actionCheck);
 
-            return $this->redirectToRoute('customer_home');
+            return $this->redirectToRoute('roadmap_showUser');
         }
         return $this->render('action/showUser.html.twig', [
+            'actionCheck' => $actionCheck,
             'action' => $action,
             'form' => $form->createView()
         ]);
