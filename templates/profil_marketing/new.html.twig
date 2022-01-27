@@ -6,9 +6,8 @@
 {% block body %}
 	<div class="container col-auto col-md-9 col-xl-10">
 		<h1>Nouvel audit 3/3</h1>
-
+		<a class="btn my-3" href="{{ path('profil_marketing_index') }}">retour aux audits</a>
 		{{ include('profil_marketing/_form.html.twig') }}
 
-		<a href="{{ path('profil_marketing_index') }}">retour à la liste</a>
 	</div>
 {% endblock %}
