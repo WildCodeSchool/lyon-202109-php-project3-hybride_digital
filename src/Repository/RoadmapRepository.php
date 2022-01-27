@@ -55,8 +55,10 @@ class RoadmapRepository extends ServiceEntityRepository
     public function getRoadmap(int $roadmapId): ?Roadmap
     {
         $roadmap = $this->createQueryBuilder('r')
-            ->join('r.steps', 's')
-            ->join('s.actions', 'a')
+            ->leftjoin('r.steps', 's')
+            ->addSelect('s')
+            ->leftjoin('s.actions', 'a')
+            ->addSelect('a')
             ->andWhere('r.id = :id')
             ->setParameter('id', $roadmapId)
             ->getQuery()
