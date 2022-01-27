@@ -22,7 +22,7 @@
 
 					{% for stepcheck in roadmapcheck.stepChecks %}
 						<div class="mx-3">
-							<h4><a href={{ path('step_showUser', {'id': stepcheck.step.id} ) }}>{{ stepcheck.step.name }}</a>
+							<h4><a href={{ path('step_showUser', {'id': stepcheck.step.id}) }}>{{ stepcheck.step.name }}</a>
 								{% if stepcheck.isComplete %}
 									<img src="{{ asset('build/images/ok.png') }}" class="imgcheck"/>
 								{% else %}
@@ -33,7 +33,7 @@
 							{% for actioncheck in stepcheck.actionChecks %}
 								<div class="mx-3">
 									<p>
-										<a href={{ path('action_showUser', {'id': actioncheck.action.id} ) }}>{{ actioncheck.action.name }}</a>
+										<a href={{ path('action_showUser', {'id': actioncheck.action.id}) }}>{{ actioncheck.action.name }}</a>
 										{% if actioncheck.isComplete %}
 											<img src="{{ asset('build/images/ok.png') }}" class="imgcheck"/>
 										{% else %}

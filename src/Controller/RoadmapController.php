@@ -68,7 +68,7 @@ class RoadmapController extends AbstractController
      * @IsGranted("ROLE_USER")
      */
     public function showUser(): Response
-    {   
+    {
         $user = $this->getUser();
         return $this->render('roadmap/showUser.html.twig', ['user' => $user]);
     }
