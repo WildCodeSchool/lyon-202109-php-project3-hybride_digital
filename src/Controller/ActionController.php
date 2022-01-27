@@ -109,12 +109,12 @@ class ActionController extends AbstractController
         ActionCheck $actionCheck,
         Request $request,
         EntityManagerInterface $entityManager,
-        CheckGestion $checkGestion,
-        CheckValidity $checkValidity
+        CheckGestion $checkGestion
     ): Response {
         $stepCheck = $actionCheck->getStepCheck();
         if (!is_null($stepCheck)) {
             $roadmapCheck = $stepCheck->getRoadmapCheck();
+
             if (!is_null($roadmapCheck)) {
                 $userCheck = $roadmapCheck->getUser();
                 $user = $this->getUser();
@@ -124,6 +124,7 @@ class ActionController extends AbstractController
 
                     $form = $this->createForm(IsActionCompleteType::class, $actionCheck);
                     $form->handleRequest($request);
+
                     if ($form->isSubmitted() && $form->isValid()) {
                         if ($form['isComplete']) {
                             $actionCheck->setIsComplete(true);
