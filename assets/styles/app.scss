@@ -49,6 +49,15 @@ h1 {
     appearance: auto !important;
 }
 
+.imgcheck {
+    width: 30px;
+    height: auto;
+}
+
 a {
     color: $dark;
+}
+
+ul {
+    list-style-type: none;
 }

@@ -1,0 +1,38 @@
+{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/base.html.twig") %}
+
+{% block title %}Etape{% endblock %}
+
+{% block body %}
+
+	<section class="container col-auto col-md-9 col-xl-10">
+		<div>
+			<h1>Etape</h1>
+
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>Numéro</th>
+						<td>{{ step.id }}</td>
+					</tr>
+					<tr>
+						<th>Nom</th>
+						<td>{{ step.name }}</td>
+					</tr>
+					<tr>
+						<th>Actions</th>
+						<td>{% for action in step.actions %}
+							{{ action.name }}</br>
+							{% endfor %}
+						<td>
+				</tbody>
+			</table>
+			</br>
+			<a class="btn" href="{{ path('step_index') }}">retour à la liste</a>
+			</br></br>
+			<a class="btn" href="{{ path('step_edit', {'id': step.id}) }}">modifier</a>
+			</br></br>
+			{{ include('step/_delete_form.html.twig') }}
+		</div>
+	</section>
+
+{% endblock %}
