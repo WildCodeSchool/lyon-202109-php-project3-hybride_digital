@@ -3,31 +3,33 @@
 namespace App\Form;
 
 use App\Entity\Roadmap;
-use App\Entity\Step;
+use App\Entity\RoadmapCheck;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class RoadmapType extends AbstractType
+class NewRoadmapType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('steps', EntityType::class, [
-                'class' => Step::class,
+            ->add('roadmap', EntityType::class, [
+                'class' => Roadmap::class,
                 'choice_label' => 'name',
-                'multiple' => true,
+                'multiple' => false,
                 'expanded' => true,
                 'by_reference' => false,
-            ]);
+            ])
+            ->add('Roadmap', SubmitType::class);
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Roadmap::class,
+            'data_class' => RoadmapCheck::class,
         ]);
     }
 }

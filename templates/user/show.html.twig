@@ -62,6 +62,17 @@
 							</th>
 							<td>{{ user.marketarea }}</td>
 						</tr>
+						<tr>
+							<th>Roadmaps :
+							</th>
+							<td>
+								{% for roadmap in user.roadmapChecks %}
+									<p>{{ roadmap.roadmap.name }}</p>
+									{% else %}
+
+								{% endfor %}
+							</td>
+						</tr>
 					</tbody>
 				</table>
 			</div>
@@ -126,6 +137,8 @@
 				{% endif %}
 			</div>
 		</div>
+		{% include "user/_newRoadmap.html.twig" %}
 		<a class="link-dark" href="{{ path('user_index') }}">Retour à la liste des utilisateur</a>
+
 	</div>
 {% endblock %}
