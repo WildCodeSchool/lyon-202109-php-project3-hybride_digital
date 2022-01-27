@@ -4,10 +4,9 @@
 	{% set menu_list =
 [
 	{link: path("profil_index_customer"), bi: "clipboard-data", text: "Mes Audits"},
-	{link: "/roadmap/user/roadmapShow", bi: "diagram-3", text: "Mes Actions"},
-	{link: "/ressource", bi: "mortarboard", text: "Glossaire"},
-	{link: "/profile/", bi: "gear", text: "Profil"},
-
+	{link: path("roadmap_showUser"), bi: "diagram-3", text: "Mes Actions"},
+	{link: path("ressource_index"), bi: "mortarboard", text: "Glossaire"},
+	{link: path("profile_index"), bi: "gear", text: "Profil"},
 ]
 %}
 	{% include "template_menu.html.twig" with menu_list %}

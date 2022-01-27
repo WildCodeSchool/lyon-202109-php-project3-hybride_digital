@@ -7,7 +7,13 @@
 	<div class="container col-auto col-md-9 col-xl-10">
 		<h1>Liste des audits réalisés</h1>
 
-		<a class="btn" href="{{ path('profil_new') }}">Test Audit</a>
+		<a class="btn" href="{{ path('profil_new') }}">
+			{% if is_granted("ROLE_ADMIN") %}
+				Test Audit
+			{% else %}
+				Nouvel Audit
+			{% endif %}
+		</a>
 		<table class="table">
 			<thead>
 				<tr>
@@ -22,7 +28,8 @@
 					<tr>
 						<td>{{ profil.createAt ? profil.createAt|date('d-m-Y à H:i:s') : '' }}</td>
 						<td>{{ profil.user.companyname }}</td>
-						<td>{{ profil.user.firstname }} {{ profil.user.lastname }}</td>
+						<td>{{ profil.user.firstname }}
+							{{ profil.user.lastname }}</td>
 						<td>
 							<a class="link-dark" href="{{ path('profil_show', {'id': profil.id}) }}">montrer</a>
 						</td>

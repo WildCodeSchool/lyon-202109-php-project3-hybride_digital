@@ -134,7 +134,12 @@ class ActionController extends AbstractController
                         $entityManager->flush();
                         $checkGestion->checkAction($actionCheck);
 
-                        return $this->redirectToRoute('roadmap_showUser');
+                        if ($actionCheck->getStepCheck()) {
+                            $stepCheck = $actionCheck->getStepCheck();
+                            $checkStepId = $stepCheck->getId();
+
+                            return $this->redirectToRoute('step_userShow', ['id' => $checkStepId]);
+                        }
                     }
                     return $this->render('action/showUser.html.twig', [
                         'actionCheck' => $actionCheck,
@@ -144,7 +149,6 @@ class ActionController extends AbstractController
                 }
             }
         }
-
         return new Response("Vous n'avez pas accès à cette page.", 403);
     }
 }
