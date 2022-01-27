@@ -8,6 +8,7 @@
 		<h1>Compte utilisateur
 			{{ user.firstname }}
 			{{ user.lastname }}</h1>
+		<a class="btn my-3" href="{{ path('user_index') }}">Retour à la liste</a>
 		<div class="row">
 			<div class="col-6">
 				<table class="table">
@@ -138,7 +139,6 @@
 			</div>
 		</div>
 		{% include "user/_newRoadmap.html.twig" %}
-		<a class="link-dark" href="{{ path('user_index') }}">Retour à la liste des utilisateur</a>
 
 	</div>
 {% endblock %}
