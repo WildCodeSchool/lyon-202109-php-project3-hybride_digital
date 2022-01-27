@@ -15,6 +15,6 @@ class PasswordChangeType extends AbstractType
             ->add('currentPassword', PasswordType::class, ['label' => 'Mot de passe actuel: '])
             ->add('newPassword', PasswordType::class, ['label' => 'Nouveau mot de passe: '])
             ->add('newPasswordConfirm', PasswordType::class, ['label' => 'Confirmez votre mot de passe: '])
-            ->add('submit', SubmitType::class);
+            ->add('submit', SubmitType::class, ['label' => 'Enregistrer']);
     }
 }
