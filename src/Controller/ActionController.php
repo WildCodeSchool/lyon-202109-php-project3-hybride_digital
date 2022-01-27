@@ -8,6 +8,7 @@ use App\Form\IsActionCompleteType;
 use App\Form\ActionType;
 use App\Repository\ActionRepository;
 use App\Service\CheckGestion;
+use App\Service\CheckValidity;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -110,25 +111,40 @@ class ActionController extends AbstractController
         EntityManagerInterface $entityManager,
         CheckGestion $checkGestion
     ): Response {
-        $action = $actionCheck->getAction();
+        $stepCheck = $actionCheck->getStepCheck();
+        if (!is_null($stepCheck)) {
+            $roadmapCheck = $stepCheck->getRoadmapCheck();
 
-        $form = $this->createForm(IsActionCompleteType::class, $actionCheck);
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            if ($form['isComplete']) {
-                $actionCheck->setIsComplete(true);
-            } else {
-                $actionCheck->setIsComplete(false);
+            if (!is_null($roadmapCheck)) {
+                $userCheck = $roadmapCheck->getUser();
+                $user = $this->getUser();
+
+                if ($userCheck === $user) {
+                    $action = $actionCheck->getAction();
+
+                    $form = $this->createForm(IsActionCompleteType::class, $actionCheck);
+                    $form->handleRequest($request);
+
+                    if ($form->isSubmitted() && $form->isValid()) {
+                        if ($form['isComplete']) {
+                            $actionCheck->setIsComplete(true);
+                        } else {
+                            $actionCheck->setIsComplete(false);
+                        }
+                        $entityManager->flush();
+                        $checkGestion->checkAction($actionCheck);
+
+                        return $this->redirectToRoute('roadmap_showUser');
+                    }
+                    return $this->render('action/showUser.html.twig', [
+                        'actionCheck' => $actionCheck,
+                        'action' => $action,
+                        'form' => $form->createView()
+                    ]);
+                }
             }
-            $entityManager->flush();
-            $checkGestion->checkAction($actionCheck);
-
-            return $this->redirectToRoute('roadmap_showUser');
         }
-        return $this->render('action/showUser.html.twig', [
-            'actionCheck' => $actionCheck,
-            'action' => $action,
-            'form' => $form->createView()
-        ]);
+
+        return new Response("Vous n'avez pas accès à cette page.", 403);
     }
 }

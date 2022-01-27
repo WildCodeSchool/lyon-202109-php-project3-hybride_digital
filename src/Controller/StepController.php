@@ -69,15 +69,23 @@ class StepController extends AbstractController
      */
     public function showUser(StepCheck $stepCheck): Response
     {
-        $step = $stepCheck->getStep();
-        $actionChecks = $stepCheck->getActionChecks();
-        $stepCheck = $stepCheck->getIsComplete();
+        $user = $this->getUser();
+        if (!is_null($stepCheck->getRoadmapCheck())) {
+            $userCheck = $stepCheck->getRoadmapCheck()->getUser();
 
-        return $this->render('step/showUser.html.twig', [
-            'step' => $step,
-            'action_checks' => $actionChecks,
-            'step_check' => $stepCheck,
-        ]);
+            if ($userCheck === $user) {
+                $step = $stepCheck->getStep();
+                $actionChecks = $stepCheck->getActionChecks();
+                $stepCheck = $stepCheck->getIsComplete();
+
+                return $this->render('step/showUser.html.twig', [
+                    'step' => $step,
+                    'action_checks' => $actionChecks,
+                    'step_check' => $stepCheck,
+                ]);
+            }
+        }
+            return new Response("Vous n'avez pas accès à cette page.", 403);
     }
 
     /**
