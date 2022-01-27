@@ -124,7 +124,7 @@ class ActionController extends AbstractController
             $entityManager->flush();
             $checkGestion->checkAction($actionCheck);
 
-            return $this->redirectToRoute('customer_home');
+            return $this->redirectToRoute('roadmap_showUser');
         }
         return $this->render('action/showUser.html.twig', [
             'action' => $action,

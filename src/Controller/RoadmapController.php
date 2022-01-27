@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Roadmap;
+use App\Entity\User;
 use App\Form\RoadmapType;
 use App\Repository\RoadmapRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -10,9 +11,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/roadmap")
+ * @IsGranted("ROLE_USER")
  */
 class RoadmapController extends AbstractController
 {
@@ -28,6 +31,7 @@ class RoadmapController extends AbstractController
 
     /**
      * @Route("/new", name="roadmap_new", methods={"GET", "POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -50,6 +54,7 @@ class RoadmapController extends AbstractController
 
     /**
      * @Route("/{id}", name="roadmap_show", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function show(Roadmap $roadmap): Response
     {
@@ -59,7 +64,18 @@ class RoadmapController extends AbstractController
     }
 
     /**
+     * @Route("/user/roadmapShow", name="roadmap_showUser", methods={"GET"})
+     * @IsGranted("ROLE_USER")
+     */
+    public function showUser(): Response
+    {   
+        $user = $this->getUser();
+        return $this->render('roadmap/showUser.html.twig', ['user' => $user]);
+    }
+
+    /**
      * @Route("/{id}/edit", name="roadmap_edit", methods={"GET", "POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Roadmap $roadmap, EntityManagerInterface $entityManager): Response
     {
@@ -80,6 +96,7 @@ class RoadmapController extends AbstractController
 
     /**
      * @Route("/{id}", name="roadmap_delete", methods={"POST"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Roadmap $roadmap, EntityManagerInterface $entityManager): Response
     {

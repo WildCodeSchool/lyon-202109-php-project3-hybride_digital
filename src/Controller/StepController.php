@@ -65,7 +65,7 @@ class StepController extends AbstractController
     }
 
     /**
-     * @Route("/user/{id}", name="step_show", methods={"GET"})
+     * @Route("/user/{id}", name="step_showUser", methods={"GET"})
      */
     public function showUser(StepCheck $stepCheck): Response
     {
