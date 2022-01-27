@@ -8,74 +8,137 @@
 		<h1>Compte utilisateur
 			{{ user.firstname }}
 			{{ user.lastname }}</h1>
+		<a class="btn my-3" href="{{ path('user_index') }}">Retour à la liste</a>
+		<div class="row">
+			<div class="col-6">
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>email :
+							</th>
+							<td>{{ user.email }}</td>
+						</tr>
+						<tr>
+							<th>Nom de la société :
+							</th>
+							<td>{{ user.companyname }}</td>
+						</tr>
+						<tr>
+							<th>Nom de domaine de la société :
+							</th>
+							<td>{{ user.domainname }}</td>
+						</tr>
+						<tr>
+							<th>Secteur d'activité :
+							</th>
+							<td>{{ user.businesssector }}</td>
+						</tr>
+						<tr>
+							<th>Numéro de téléphone :
+							</th>
+							<td>{{ user.phonenumber }}</td>
+						</tr>
+						<tr>
+							<th>Adresse :
+							</th>
+							<td>{{ user.adress }}</td>
+						</tr>
+						<tr>
+							<th>Code postal :
+							</th>
+							<td>{{ user.postcode }}</td>
+						</tr>
+						<tr>
+							<th>Ville :
+							</th>
+							<td>{{ user.city }}</td>
+						</tr>
+						<tr>
+							<th>Montant de votre budget publicitaire :
+							</th>
+							<td>{{ user.advertisingbudget }}</td>
+						</tr>
+						<tr>
+							<th>Zone de chalandise :
+							</th>
+							<td>{{ user.marketarea }}</td>
+						</tr>
+						<tr>
+							<th>Roadmaps :
+							</th>
+							<td>
+								{% for roadmap in user.roadmapChecks %}
+									<p>{{ roadmap.roadmap.name }}</p>
+									{% else %}
 
-		<table class="table">
-			<tbody>
-				<tr>
-					<th>email :
-					</th>
-					<td>{{ user.email }}</td>
-				</tr>
-				<tr>
-					<th>Nom de la société :
-					</th>
-					<td>{{ user.companyname }}</td>
-				</tr>
-				<tr>
-					<th>Nom de domaine de la société :
-					</th>
-					<td>{{ user.domainname }}</td>
-				</tr>
-				<tr>
-					<th>Secteur d'activité :
-					</th>
-					<td>{{ user.businesssector }}</td>
-				</tr>
-				<tr>
-					<th>Numéro de téléphone :
-					</th>
-					<td>{{ user.phonenumber }}</td>
-				</tr>
-				<tr>
-					<th>Adresse :
-					</th>
-					<td>{{ user.adress }}</td>
-				</tr>
-				<tr>
-					<th>Code postal :
-					</th>
-					<td>{{ user.postcode }}</td>
-				</tr>
-				<tr>
-					<th>Ville :
-					</th>
-					<td>{{ user.city }}</td>
-				</tr>
-				<tr>
-					<th>Montant de votre budget publicitaire :
-					</th>
-					<td>{{ user.advertisingbudget }}</td>
-				</tr>
-				<tr>
-					<th>Zone de chalandise :
-					</th>
-					<td>{{ user.marketarea }}</td>
-				</tr>
-				<tr>
-					<th>Roadmaps :
-					</th>
-					<td>
-						{% for roadmap in user.roadmapChecks %}
-							<p>{{ roadmap.roadmap.name }}</p>
-							{% else %}
-
-						{% endfor %}
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	{% include "user/_newRoadmap.html.twig" %}
-		<a class="link-dark" href="{{ path('user_index') }}">Retour à la liste des utilisateur</a>
+								{% endfor %}
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-6">
+				{% if user.SocialMedias is not empty %}
+					<table class="table">
+						<thead>
+							<tr>
+								<th colspan="2">Liens utilisateurs
+									{{ user.firstname }}
+									{{ user.lastname }}</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Linkedlin:
+								</td>
+								<td>{{ user.SocialMedias.linkedIn }}</td>
+							</tr>
+							<tr>
+								<td>Facebook:
+								</td>
+								<td>{{ user.SocialMedias.facebook }}</td>
+							</tr>
+							<tr>
+								<td>Tiktok:
+								</td>
+								<td>{{ user.SocialMedias.tiktok }}</td>
+							</tr>
+							<tr>
+								<td>Twitter:
+								</td>
+								<td>{{ user.SocialMedias.twitter }}</td>
+							</tr>
+							<tr>
+								<td>Instagram:
+								</td>
+								<td>{{ user.SocialMedias.instagram }}</td>
+							</tr>
+							<tr>
+								<td>Snapchat:
+								</td>
+								<td>{{ user.SocialMedias.snapchat }}</td>
+							</tr>
+							<tr>
+								<td>Youtube:
+								</td>
+								<td>{{ user.SocialMedias.youtube }}</td>
+							</tr>
+							<tr>
+								<td>Pinterest:
+								</td>
+								<td>{{ user.SocialMedias.pinterest }}</td>
+							</tr>
+							<tr>
+								<td>Site Internet:
+								</td>
+								<td>{{ user.SocialMedias.site }}</td>
+							</tr>
+						</tbody>
+					</table>
+				{% endif %}
+			</div>
+		</div>
+		{% include "user/_newRoadmap.html.twig" %}
 
 	</div>
 {% endblock %}

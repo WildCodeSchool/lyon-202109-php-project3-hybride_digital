@@ -15,13 +15,13 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
- * @Route("/step")
+ * @Route("/step", name="step_")
  * @IsGranted("ROLE_USER")
  */
 class StepController extends AbstractController
 {
     /**
-     * @Route("/", name="step_index", methods={"GET"})
+     * @Route("/", name="index", methods={"GET"})
      */
     public function index(StepRepository $stepRepository): Response
     {
@@ -31,7 +31,7 @@ class StepController extends AbstractController
     }
 
     /**
-     * @Route("/new", name="step_new", methods={"GET", "POST"})
+     * @Route("/new", name="new", methods={"GET", "POST"})
      * @IsGranted("ROLE_ADMIN")
      */
     public function new(Request $request, EntityManagerInterface $entityManager): Response
@@ -54,7 +54,7 @@ class StepController extends AbstractController
     }
 
     /**
-     * @Route("/admin/{id}", name="step_show", methods={"GET"})
+     * @Route("/admin/{id}", name="show", methods={"GET"})
      * @IsGranted("ROLE_ADMIN")
      */
     public function show(Step $step): Response
@@ -65,7 +65,7 @@ class StepController extends AbstractController
     }
 
     /**
-     * @Route("/user/{id}", name="step_show", methods={"GET"})
+     * @Route("/user/{id}", name="userShow", methods={"GET"})
      */
     public function showUser(StepCheck $stepCheck): Response
     {
@@ -89,18 +89,19 @@ class StepController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="step_edit", methods={"GET", "POST"})
+     * @Route("/{id}/edit", name="edit", methods={"GET", "POST"})
      * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Request $request, Step $step, EntityManagerInterface $entityManager): Response
     {
+        $id = $step->getId();
         $form = $this->createForm(StepType::class, $step);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('step_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('step_show', ['id' => $id], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('step/edit.html.twig', [
@@ -110,7 +111,7 @@ class StepController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="step_delete", methods={"POST"})
+     * @Route("/{id}", name="delete", methods={"POST"})
      * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Step $step, EntityManagerInterface $entityManager): Response

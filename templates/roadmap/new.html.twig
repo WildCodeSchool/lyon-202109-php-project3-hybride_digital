@@ -6,9 +6,9 @@
 {% block body %}
 	<div class="container col-auto col-md-9 col-xl-10">
 		<h1>Création d'une Roadmap</h1>
+		<a class="btn my-3" href="{{ path('roadmap_index') }}">Retour à la liste</a>
 
 		{{ include('roadmap/_form.html.twig') }}
 
-		<a href="{{ path('roadmap_index') }}">back to list</a>
 	</div>
 {% endblock %}

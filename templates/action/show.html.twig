@@ -7,7 +7,7 @@
 	<section class="container col-auto col-md-9 col-xl-10">
 		<h1>Action</h1>
 
-		<section class="container col-auto col-md-6 col-xl-8">
+		<a class="btn my-3" href="{{ path('action_index') }}">Retour à la liste</a>
 			<table class="table">
 				<tbody>
 					<tr>
@@ -54,11 +54,9 @@
 			</table>
 
 
-			<a class="btn btn-light mt-1" href="{{ path('action_edit', {'id': action.id}) }}">Modifier</a>
+			<a class="btn my-3" href="{{ path('action_edit', {'id': action.id}) }}">Modifier</a>
 
 			{{ include('action/_delete_form.html.twig') }}
 
-			<a class="btn btn-light mt-4" href="{{ path('action_index') }}">Retour à la liste</a>
-		</section>
 	</section>
 {% endblock %}

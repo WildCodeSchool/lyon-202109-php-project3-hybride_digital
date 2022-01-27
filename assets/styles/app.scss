@@ -35,10 +35,9 @@ h1 {
     border-width: 3px;
     border-color: $dark;
     font-family: 'Aldrich', sans-serif;
-    width: 10rem;
+    width: 12rem;
     justify-content: center;
     align-items: center;
-
 }
 
 .invisible {
@@ -47,6 +46,10 @@ h1 {
 
 .form-check-input {
     appearance: auto !important;
+}
+
+.form-check-label{
+    padding: 0 !important;
 }
 
 .imgcheck {
