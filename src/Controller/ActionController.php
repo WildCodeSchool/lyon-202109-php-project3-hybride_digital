@@ -57,6 +57,7 @@ class ActionController extends AbstractController
 
     /**
      * @Route("/admin/{id}", name="show", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function show(Action $action): Response
     {

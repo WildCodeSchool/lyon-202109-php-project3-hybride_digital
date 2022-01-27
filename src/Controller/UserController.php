@@ -2,8 +2,12 @@
 
 namespace App\Controller;
 
+use App\Entity\RoadmapCheck;
 use App\Entity\User;
+use App\Form\NewRoadmapType;
 use App\Form\UserType;
+use App\Repository\RoadmapRepository;
+use App\Service\RoadmapManagement;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,12 +37,35 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="show", methods={"GET"})
+     * @Route("/{id}", name="show", methods={"GET", "POST"})
      */
-    public function show(User $user): Response
-    {
+    public function show(
+        Request $request,
+        User $user,
+        RoadmapManagement $roadmapManagement,
+        RoadmapRepository $roadmapRepository
+    ): Response {
+        $roadmapCheck = new RoadmapCheck();
+        $form = $this->createForm(NewRoadmapType::class, $roadmapCheck);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+            if ($data instanceof RoadmapCheck) {
+                $dataRoadmap = $data->getRoadmap();
+                if (!is_null($dataRoadmap)) {
+                    $roadmapId = (int)$dataRoadmap->getId();
+                    $roadmap = $roadmapRepository->getRoadmap($roadmapId);
+                    if (!is_null($roadmap)) {
+                        $roadmapManagement->newRoadmap($roadmap, $user);
+                    }
+                }
+            }
+        }
+
         return $this->render('user/show.html.twig', [
             'user' => $user,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -66,8 +93,8 @@ class UserController extends AbstractController
      */
     public function delete(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
-            $entityManager->remove($user);
-            $entityManager->flush();
+        $entityManager->remove($user);
+        $entityManager->flush();
 
         return $this->redirectToRoute('user_index', [], Response::HTTP_SEE_OTHER);
     }
