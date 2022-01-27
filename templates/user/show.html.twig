@@ -8,6 +8,7 @@
 		<h1>Compte utilisateur
 			{{ user.firstname }}
 			{{ user.lastname }}</h1>
+		<a class="btn my-3" href="{{ path('user_index') }}">Retour à la liste</a>
 
 		<table class="table">
 			<tbody>
@@ -63,7 +64,6 @@
 				</tr>
 			</tbody>
 		</table>
-
-		<a class="link-dark" href="{{ path('user_index') }}">Retour à la liste des utilisateur</a>
+		<a class="btn my-3" href="{{ path("user_update", {id: user.id}) }}">Modifier</a>
 	</div>
 {% endblock %}

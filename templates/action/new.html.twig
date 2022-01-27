@@ -1,18 +1,18 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}New Action
+{% block title %}Nouvelle Action
 {% endblock %}
 
 {% block body %}
 	<section class="container col-auto col-md-9 col-xl-10">
 		<div>
-			<h1>Create new Action</h1>
+			<h1>Créer une nouvelle action</h1>
 
-			{% if is_granted("ROLE_ADMIN") %}
-				{{ include('action/_form.html.twig') }}
-			{% endif %}
+			<a class="btn my-3" class="link-dark" href="{{ path('action_index') }}">Retour à la liste</a>
+
+			{{ include('action/_form.html.twig') }}
 		</div>
 
-		<a class="btn btn-light mt-1" class="link-dark" href="{{ path('action_index') }}">Retour à la liste</a>
+
 	</section>
 {% endblock %}

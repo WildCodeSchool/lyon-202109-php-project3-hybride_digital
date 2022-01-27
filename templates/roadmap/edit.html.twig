@@ -7,9 +7,9 @@
 	<div class="container col-auto col-md-9 col-xl-10">
 		<h1>Modification d'une nouvelle Roadmap</h1>
 
-		{{ include('roadmap/_form.html.twig', {'button_label': 'Update'}) }}
+		<a class="btn my-3" href="{{ path('roadmap_index') }}">Retour à la liste</a>
 
-		<a href="{{ path('roadmap_index') }}">back to list</a>
+		{{ include('roadmap/_form.html.twig', {'button_label': 'Modifier'}) }}
 
 		{{ include('roadmap/_delete_form.html.twig') }}
 	</div>

@@ -1,47 +1,49 @@
 {% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/base.html.twig") %}
 
 
-{% block title %}Ressource{% endblock %}
+{% block title %}Ressource
+{% endblock %}
 
 {% block body %}
-    <section class="container col-auto col-md-9 col-xl-10">
-        <h1>{{ ressource.name }}</h1>
+	<section class="container col-auto col-md-9 col-xl-10">
+		<h1>{{ ressource.name }}</h1>
 
-        <table class="table">
-            <tbody>
-                <tr>
-                    <th>Description</th>
-                    <td>{{ ressource.description }}</td>
-                </tr>
-                <tr>
-                    <th>Lien</th>
-                    <td><a class="link-dark" href="{{ ressource.link }}">{{ ressource.link }}</a></td>
-                </tr>
-                <tr>
-                    {% if ressource.type == "image" %}
-                        <img id='showIMG' src="{{ vich_uploader_asset(ressource) }}" alt="{{ ressource.name }}" width="800">
-                    {% endif %}
+		<a class="btn my-3" href="{{ path('ressource_index') }}">retour à la liste</a>
 
-                    {% if ressource.type == "pdf" %}
-                        <iframe src="{{ vich_uploader_asset(ressource) }}" alt="{{ ressource.name }}" width="800" height="600"></iframe>
-                    {% endif %}
+		<table class="table">
+			<tbody>
+				<tr>
+					<th>Description</th>
+					<td>{{ ressource.description }}</td>
+				</tr>
+				<tr>
+					<th>Lien</th>
+					<td>
+						<a class="link-dark" href="{{ ressource.link }}">{{ ressource.link }}</a>
+					</td>
+				</tr>
+				<tr>
+					{% if ressource.type == "image" %}
+						<img id='showIMG' src="{{ vich_uploader_asset(ressource) }}" alt="{{ ressource.name }}" width="800">
+					{% endif %}
 
-                    {% if ressource.type == "video"%}
-                        <video controls width="800">
-                            <source src="{{ vich_uploader_asset(ressource) }}" alt="{{ ressource.name }}"
-                            type="video/mp4">
-                        </video>
-                    {% endif %}
-                </tr>
-            </tbody>
-        </table>
+					{% if ressource.type == "pdf" %}
+						<iframe src="{{ vich_uploader_asset(ressource) }}" alt="{{ ressource.name }}" width="800" height="600"></iframe>
+					{% endif %}
 
-        <a class="btn" href="{{ path('ressource_index') }}">retour à la liste</a>
-        </br></br>
-        {% if is_granted("ROLE_ADMIN") %}
-        <a class="btn" href="{{ path('ressource_edit', {'id': ressource.id}) }}">modifier</a>
-        </br></br>
-        {{ include('ressource/_delete_form.html.twig') }}
-        {% endif %}
-    </section>
+					{% if ressource.type == "video"%}
+						<video controls width="800">
+							<source src="{{ vich_uploader_asset(ressource) }}" alt="{{ ressource.name }}" type="video/mp4">
+						</video>
+					{% endif %}
+				</tr>
+			</tbody>
+		</table>
+
+		{% if is_granted("ROLE_ADMIN") %}
+			<a class="btn my-3" href="{{ path('ressource_edit', {'id': ressource.id}) }}">modifier</a>
+
+			{{ include('ressource/_delete_form.html.twig') }}
+		{% endif %}
+	</section>
 {% endblock %}

@@ -6,13 +6,16 @@
 {% block body %}
 	<div class="container col-auto col-md-9 col-xl-10">
 		<h1>Liste des Roadmap</h1>
-
+		<div class="d-flex">
+			<a class="btn my-3 mx-2" href="{{ path('roadmap_new') }}">Nouvelle Roadmap</a>
+			<a class="btn my-3 mx-2" href="{{ path('admin_gestionRoadmap') }}">Retour au Menu</a>
+		</div>
 		<table class="table">
 			<thead>
 				<tr>
 					<th>Id</th>
-					<th>Name</th>
-					<th>actions</th>
+					<th>Nom</th>
+					<th>Actions</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -21,8 +24,8 @@
 						<td>{{ roadmap.id }}</td>
 						<td>{{ roadmap.name }}</td>
 						<td>
-							<a href="{{ path('roadmap_show', {'id': roadmap.id}) }}">show</a>
-							<a href="{{ path('roadmap_edit', {'id': roadmap.id}) }}">edit</a>
+							<a class="mx-3" href="{{ path('roadmap_show', {'id': roadmap.id}) }}">Voir</a>
+							<a class="mx-3" href="{{ path('roadmap_edit', {'id': roadmap.id}) }}">Modifier</a>
 						</td>
 					</tr>
 				{% else %}
@@ -32,8 +35,5 @@
 				{% endfor %}
 			</tbody>
 		</table>
-
-		<a href="{{ path('roadmap_new') }}">Create new</a>
-        <a href="{{ path('admin_gestionRoadmap') }}">Retour au menu gestion roadmap</a>
 	</div>
 {% endblock %}
