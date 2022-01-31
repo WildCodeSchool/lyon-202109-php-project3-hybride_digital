@@ -10,6 +10,14 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class UserFixtures extends Fixture
 {
     private UserPasswordHasherInterface $passwordHasder;
+    public const USERS = [
+        ['jcriotte69@gmail.com', 'Jean-Christophe', 'RIOTTE', ['ROLE_ADMIN'], true, 'jcriotte69'],
+        ['client69@gmail.com', 'Harry', 'SUIVANT', [''], false, 'client'],
+        ['client1@gmail.com', 'Paul', 'client1', [''], false, 'client1'],
+        ['client2@gmail.com', 'Jerome', 'client2', [''], false, 'client2'],
+        ['client3@gmail.com', 'Thomas', 'client3', [''], false, 'client3'],
+        ['client4@gmail.com', 'Fabrice', 'client4', [''], false, 'client4']
+    ];
 
     public function __construct(UserPasswordHasherInterface $passwordHasderInt)
     {
@@ -18,40 +26,24 @@ class UserFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $key = 0;
-        $newUser = new User();
-        $newUser->setEmail('jcriotte69@gmail.com');
-        $newUser->setFirstname('Jean-Christophe');
-        $newUser->setLastname('RIOTTE');
-        $newUser->setRoles(['ROLE_ADMIN']);
-        $newUser->setFirstConnection(true);
-        $plaintextPassword = ('jcriotte69');
-        // hash the password (based on the security.yaml config for the $user class)
-        $hashedPassword = $this->passwordHasder->hashPassword(
-            $newUser,
-            $plaintextPassword
-        );
-        $newUser->setPassword($hashedPassword);
-        $manager->persist($newUser);
-        $this->addReference('user_' . $key, $newUser);
-
-        $manager->flush();
-
-        $key++;
-        $newUser = new User();
-        $newUser->setEmail('client69@gmail.com');
-        $newUser->setFirstname('Harry');
-        $newUser->setLastname('SUIVANT');
-        $newUser->setRoles(['']);
-        $newUser->setFirstConnection(false);
-        $plaintextPassword = ('client');
-        // hash the password (based on the security.yaml config for the $user class)
-        $hashedPassword = $this->passwordHasder->hashPassword(
-            $newUser,
-            $plaintextPassword
-        );
-        $newUser->setPassword($hashedPassword);
-        $manager->persist($newUser);
-        $this->addReference('user_' . $key, $newUser);
+        foreach (self::USERS as $user) {
+            $newUser = new User();
+            $newUser->setEmail($user[0]);
+            $newUser->setFirstname($user[1]);
+            $newUser->setLastname($user[2]);
+            $newUser->setRoles($user[3]);
+            $newUser->setFirstConnection($user[4]);
+            $plaintextPassword = ($user[5]);
+            // hash the password (based on the security.yaml config for the $user class)
+            $hashedPassword = $this->passwordHasder->hashPassword(
+                $newUser,
+                $plaintextPassword
+            );
+            $newUser->setPassword($hashedPassword);
+            $manager->persist($newUser);
+            $this->addReference('user_' . $key, $newUser);
+            $key++;
+        }
 
         $manager->flush();
     }
