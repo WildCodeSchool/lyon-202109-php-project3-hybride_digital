@@ -64,3 +64,10 @@ a {
 ul {
     list-style-type: none;
 }
+
+#tableTxt {
+    max-width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
