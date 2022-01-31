@@ -1,0 +1,45 @@
+{% extends (is_granted("ROLE_ADMIN")) ? ("admin/base.html.twig") : ("customer/base.html.twig") %}
+
+{% block title %}La liste des étapes
+{% endblock %}
+
+{% block body %}
+	{% if is_granted("ROLE_ADMIN") %}
+	<section class="container col-auto col-md-9 col-xl-10">
+		<div>
+			<h1>La liste des étapes</h1>
+
+			<a class="btn" href="{{ path('step_new') }}">Nouvelle étape</a>
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Numéro</th>
+						<th>Etapes</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for step in steps %}
+						<tr>
+							<td>{{ step.id }}</td>
+							<td>{{ step.name }}</td>
+							<td>{% for action in step.actions %}
+							{{ action.name }}</br>
+							{% endfor %}</td>
+							<td>
+								<a class="mx-3" href="{{ path('step_show', {'id': step.id}) }}">montrer</a>
+								<a class="mx-3" href="{{ path('step_edit', {'id': step.id}) }}">modifier</a>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td colspan="3">pas de données</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</section>
+	{% endif %}
+{% endblock %}

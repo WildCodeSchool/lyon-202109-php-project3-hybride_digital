@@ -3,8 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Action;
+use App\Entity\ActionCheck;
+use App\Form\IsActionCompleteType;
 use App\Form\ActionType;
 use App\Repository\ActionRepository;
+use App\Service\CheckGestion;
+use App\Service\CheckValidity;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,6 +24,7 @@ class ActionController extends AbstractController
 {
     /**
      * @Route("/", name="index", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function index(ActionRepository $actionRepository): Response
     {
@@ -52,7 +57,8 @@ class ActionController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="show", methods={"GET"})
+     * @Route("/admin/{id}", name="show", methods={"GET"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function show(Action $action): Response
     {
@@ -94,5 +100,55 @@ class ActionController extends AbstractController
         }
 
         return $this->redirectToRoute('action_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    /**
+     * @Route("/user/{id}", name="showUser", methods={"GET", "POST"})
+     */
+    public function showUser(
+        ActionCheck $actionCheck,
+        Request $request,
+        EntityManagerInterface $entityManager,
+        CheckGestion $checkGestion
+    ): Response {
+        $stepCheck = $actionCheck->getStepCheck();
+        if (!is_null($stepCheck)) {
+            $roadmapCheck = $stepCheck->getRoadmapCheck();
+
+            if (!is_null($roadmapCheck)) {
+                $userCheck = $roadmapCheck->getUser();
+                $user = $this->getUser();
+
+                if ($userCheck === $user) {
+                    $action = $actionCheck->getAction();
+
+                    $form = $this->createForm(IsActionCompleteType::class, $actionCheck);
+                    $form->handleRequest($request);
+
+                    if ($form->isSubmitted() && $form->isValid()) {
+                        if ($form['isComplete']) {
+                            $actionCheck->setIsComplete(true);
+                        } else {
+                            $actionCheck->setIsComplete(false);
+                        }
+                        $entityManager->flush();
+                        $checkGestion->checkAction($actionCheck);
+
+                        if ($actionCheck->getStepCheck()) {
+                            $stepCheck = $actionCheck->getStepCheck();
+                            $checkStepId = $stepCheck->getId();
+
+                            return $this->redirectToRoute('step_userShow', ['id' => $checkStepId]);
+                        }
+                    }
+                    return $this->render('action/showUser.html.twig', [
+                        'actionCheck' => $actionCheck,
+                        'action' => $action,
+                        'form' => $form->createView()
+                    ]);
+                }
+            }
+        }
+        return new Response("Vous n'avez pas accès à cette page.", 403);
     }
 }
