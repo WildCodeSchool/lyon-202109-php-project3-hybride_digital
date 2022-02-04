@@ -20,7 +20,6 @@ class StepType extends AbstractType
                 'expanded' => true,
                 'by_reference' => false,
             ])
-            ->add('roadmaps', null, ['choice_label' => 'name'])
         ;
     }
 
