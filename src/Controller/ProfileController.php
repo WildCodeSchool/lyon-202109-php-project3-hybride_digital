@@ -142,8 +142,20 @@ class ProfileController extends AbstractController
                         $entityManager->persist($user);
                         $entityManager->flush();
 
-                        $this->addFlash('success', "Votre mot de passe a été changé avec succès!");
+                        $this->addFlash(
+                            'success',
+                            'Votre mot de passe a été changé avec succès! Veuillez vous reconnecter.'
+                        );
+
+                        return $this->redirectToRoute('app_login');
+                    } else {
+                        $this->addFlash(
+                            'danger',
+                            'Votre nouveau mot de passe doit être différent du précédent.'
+                        );
                     }
+                } else {
+                    $this->addFlash('danger', 'Les champs sont incorrects.');
                 }
             }
 
