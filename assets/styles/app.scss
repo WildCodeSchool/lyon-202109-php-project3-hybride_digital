@@ -71,3 +71,17 @@ ul {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+.alert {
+    font-size: 1.3rem;
+    margin-bottom: 0 !important;
+    text-align: center;
+}
+
+.alert-danger {
+    background-color: $orange;
+}
+
+.alert-success {
+    border: solid 2px rgb(70, 255, 132);
+}
