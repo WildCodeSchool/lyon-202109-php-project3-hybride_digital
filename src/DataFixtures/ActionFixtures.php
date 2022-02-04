@@ -34,15 +34,24 @@ class ActionFixtures extends Fixture implements DependentFixtureInterface
             Profil et identification : choisissez qui peut voir votre journal et 
             les publications dans lesquelles vous êtes identifié(e).
             Blocage : gérez les éléments et les personnes à bloquer.
-            Langue et région : sélectionnez la langue et le format de date que vous souhaitez utiliser sur Facebook.', [1]],
+            Langue et région : sélectionnez la langue et le format de date que vous souhaitez utiliser sur Facebook.'
+            , [1]],
         ['Création compte instagram', "Rendez-vous sur l'App Store ou sur Google Play pour télécharger l'application
-         Instagram. Ouvrez l'application en cliquant sur l'icône. Sur la page d'accueil, cliquez sur S'inscrire avec un e-mail 
+         Instagram. Ouvrez l'application en cliquant sur l'icône. Sur la page d'accueil, cliquez sur S'inscrire avec un
+         e-mail 
         ou un numéro de téléphone ou sur Créer un compte.
-        Une boîte de dialogue s'affiche et demande l'autorisation d'accéder à vos contacts. Cliquez sur Refuser ou Autoriser.
-        Complétez le champ libre avec votre numéro de téléphone ou votre mail, puis cliquez sur le bouton Suivant.", [2]],
-        ['Modification compte instagram', "Ouvrez votre application Instagram en appuyant sur la célèbre icône multicolore représentant un appareil photo. Ensuite, dirigez-vous sur votre compte personnel. Pour ce faire, touchez la petite photo de profil qui se trouve tout en bas à droite de votre écran.
-        Une fois sur votre page, appuyez sur la mention « Modifier le profil » qui se trouve entre vos photos publiées et les informations de votre compte.
-        Sélectionnez alors la ligne « Username » sur laquelle est inscrit votre nom d'utilisateur actuel. Supprimez-le et écrivez le nouveau nom que vous souhaitez adopter pour votre compte. Instagram va valider ou non votre proposition, selon la disponibilité de votre choix.", [3]],
+        Une boîte de dialogue s'affiche et demande l'autorisation d'accéder à vos contacts. Cliquez sur Refuser ou 
+        Autoriser.
+        Complétez le champ libre avec votre numéro de téléphone ou votre mail, puis cliquez sur le bouton Suivant."
+        , [2]],
+        ['Modification compte instagram', "Ouvrez votre application Instagram en appuyant sur la célèbre 
+        icône multicolore représentant un appareil photo. Ensuite, dirigez-vous sur votre compte personnel.
+        Pour ce faire, touchez la petite photo de profil qui se trouve tout en bas à droite de votre écran.
+        Une fois sur votre page, appuyez sur la mention « Modifier le profil » qui se trouve entre vos photos publiées
+        et les informations de votre compte.
+        Sélectionnez alors la ligne « Username » sur laquelle est inscrit votre nom d'utilisateur actuel. 
+        Supprimez-le et écrivez le nouveau nom que vous souhaitez adopter pour votre compte. 
+        Instagram va valider ou non votre proposition, selon la disponibilité de votre choix.", [3]],
     ];
 
     public function load(ObjectManager $manager): void
