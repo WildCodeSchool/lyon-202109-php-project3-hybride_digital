@@ -23,7 +23,7 @@
 				{% for action in actions %}
 					<tr>
 						<td>{{ action.name }}</td>
-						<td>{{ action.text }}</td>
+						<td id="tableTxt">{{ action.text }}</td>
 						<td>
 							<a class="mx-3" href="{{ path('action_show', {'id': action.id}) }}">Voir</a>
 							<a class="mx-3" href="{{ path('action_edit', {'id': action.id}) }}">Modifier</a>
