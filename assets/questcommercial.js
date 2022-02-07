@@ -65,7 +65,6 @@ if (checkPriorityCommercial) {
         if (checkPriorityCommercial.checked) {
             prcisPrioCommercial.className = 'form-control';
             prcisPrioCommercial.required = true;
-            
         }
         if (checkPriorityCommercial.checked === false) {
             prcisPrioCommercial.className = 'invisible form-control';
