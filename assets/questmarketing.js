@@ -5,6 +5,7 @@ if (checkSocialNetworkUsed) {
     checkSocialNetworkUsed.addEventListener('change', () => {
         if (checkSocialNetworkUsed.checked) {
             prcSocialNetworkUse.className = 'form-control';
+            prcSocialNetworkUse.required = true;
         }
         if (checkSocialNetworkUsed.checked === false) {
             prcSocialNetworkUse.className = 'invisible form-control';
@@ -19,6 +20,7 @@ if (checkSocialNetworkEngage) {
     checkSocialNetworkEngage.addEventListener('change', () => {
         if (checkSocialNetworkEngage.checked) {
             prcSocialNetworkEn.className = 'form-control';
+            prcSocialNetworkEn.required = true;
         }
         if (checkSocialNetworkEngage.checked === false) {
             prcSocialNetworkEn.className = 'invisible form-control';
@@ -33,6 +35,7 @@ if (checkActionSeaMep) {
     checkActionSeaMep.addEventListener('change', () => {
         if (checkActionSeaMep.checked) {
             prcActionSeaMep.className = 'form-control';
+            prcActionSeaMep.required = true;
         }
         if (checkActionSeaMep.checked === false) {
             prcActionSeaMep.className = 'invisible form-control';
@@ -50,6 +53,7 @@ if (checkActionSeoMep) {
         }
         if (checkActionSeoMep.checked === false) {
             prcActionSeoMep.className = 'invisible form-control';
+            prcActionSeaMep.required = true;
         }
     });
 }
@@ -61,6 +65,7 @@ if (checkSocialNetworkBestRoi) {
     checkSocialNetworkBestRoi.addEventListener('change', () => {
         if (checkSocialNetworkBestRoi.checked) {
             prcSNBestRoi.className = 'form-control';
+            prcSNBestRoi.required = true;
         }
         if (checkSocialNetworkBestRoi.checked === false) {
             prcSNBestRoi.className = 'invisible form-control';
@@ -75,6 +80,7 @@ if (checkVectorMarketing) {
     checkVectorMarketing.addEventListener('change', () => {
         if (checkVectorMarketing.checked) {
             prcVectorMarketing.className = 'form-control';
+            prcVectorMarketing.required = true;
         }
         if (checkVectorMarketing.checked === false) {
             prcVectorMarketing.className = 'invisible form-control';
@@ -89,6 +95,7 @@ if (checkPriorityMarketing) {
     checkPriorityMarketing.addEventListener('change', () => {
         if (checkPriorityMarketing.checked) {
             prcPriorityMarketing.className = 'form-control';
+            prcPriorityMarketing.required = true;
         }
         if (checkPriorityMarketing.checked === false) {
             prcPriorityMarketing.className = 'invisible form-control';
