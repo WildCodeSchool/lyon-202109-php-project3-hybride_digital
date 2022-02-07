@@ -4,9 +4,9 @@
 {% endblock %}
 
 {% block body %}
-	<div class="col-auto col-md-9 col-xl-10 px-sm-2 px-0 container d-flex flex-column justify-content-around">
-		<div class="row">
-			<div class="col-6 d-flex justify-content-center">
+	<div class="col-11 col-md-9 col-xl-10 px-sm-2 px-0 container d-flex flex-column justify-content-around">
+		<div class="row justify-content-around">
+			<div class="col col-lg-5 d-flex justify-content-center p-0 m-3">
 				<div class="card">
 					<div class="card-body d-flex flex-column justify-content-around">
 						<h5 class="card-title text-center">Mes Audits</h5>
@@ -15,28 +15,28 @@
 					</div>
 				</div>
 			</div>
-            <div class="col-6 d-flex justify-content-center">
+            <div class="col col-lg-5 d-flex justify-content-center p-0 m-3">
 				<div class="card">
 					<div class="card-body d-flex flex-column justify-content-around">
 						<h5 class="card-title text-center">Mes Actions</h5>
 						<p class="card-text text-center">Accéder à mes Etapes, voir mes actions, valider mes actions...</p>
-						<a href="#" class="btn btn-white align-self-center">Afficher</a>
+						<a href="{{ path("roadmap_showUser") }}" class="btn btn-white align-self-center">Afficher</a>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="row">
-			<div class="col-6 d-flex justify-content-center">
+		<div class="row justify-content-around">
+			<div class="col col-lg-5 d-flex justify-content-center p-0 m-3">
 				<div class="card">
 					<div class="card-body d-flex flex-column justify-content-around">
 						<h5 class="card-title text-center">Glossaire</h5>
 						<p class="card-text text-center">Accéder aux différentes ressources</p>
-						<a href="#" class="btn btn-white align-self-center">Afficher</a>
+						<a href="{{ path("ressource_index") }}" class="btn btn-white align-self-center">Afficher</a>
 					</div>
 				</div>
 			</div>
-            <div class="col-6 d-flex justify-content-center">
+            <div class="col col-lg-5 d-flex justify-content-center p-0 m-3">
 				<div class="card">
 					<div class="card-body d-flex flex-column justify-content-around">
 						<h5 class="card-title text-center">Mon profil</h5>
