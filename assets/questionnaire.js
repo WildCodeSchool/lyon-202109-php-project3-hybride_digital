@@ -6,12 +6,14 @@ if (checkMarketingOui) {
     checkMarketingOui.addEventListener('change', () => {
         if (checkMarketingOui.checked) {
             numberMarketingCheck.className = 'form-control';
+            numberMarketingCheck.required = true;
         }
     });
 
     checkMarketingNon.addEventListener('change', () => {
         if (checkMarketingNon.checked) {
             numberMarketingCheck.className = 'invisible form-control';
+            numberMarketingCheck.required = false;
         }
     });
 }
@@ -24,12 +26,14 @@ if (checkCommercialOui) {
     checkCommercialOui.addEventListener('change', () => {
         if (checkCommercialOui.checked) {
             numberCommercialCheck.className = 'form-control';
+            numberCommercialCheck.required = true;
         }
     });
 
     checkCommercialNon.addEventListener('change', () => {
         if (checkCommercialNon.checked) {
             numberCommercialCheck.className = 'invisible form-control';
+            numberCommercialCheck.required = false;
         }
     });
 }
