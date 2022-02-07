@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ProfilRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @SuppressWarnings(PHPMD.TooManyFields)
@@ -32,6 +33,7 @@ class Profil
 
     /**
      * @ORM\Column(type="string", length=9, nullable=true)
+     * @Assert\Regex("/^\d{9}$/", message="Numéro SIREN non-valide.")
      */
     private ?string $numberSiren;
 
