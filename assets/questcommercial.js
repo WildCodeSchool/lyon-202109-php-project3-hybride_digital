@@ -4,6 +4,7 @@ if (checkCrm) {
     checkCrm.addEventListener('change', () => {
         if (checkCrm.selectedIndex === 4) {
             nameCrm.className = 'form-control';
+            nameCrm.required = true;
         }
         if (checkCrm.selectedIndex < 4) {
             nameCrm.className = 'invisible form-control';
@@ -18,6 +19,7 @@ if (checkTimeOfProspec) {
     checkTimeOfProspec.addEventListener('change', () => {
         if (checkTimeOfProspec.selectedIndex === 4) {
             precisTimeOfProspec.className = 'form-control';
+            precisTimeOfProspec.required = true;
         }
         if (checkTimeOfProspec.selectedIndex < 4) {
             precisTimeOfProspec.className = 'invisible form-control';
@@ -32,6 +34,7 @@ if (checkNumberClosPerMonth) {
     checkNumberClosPerMonth.addEventListener('change', () => {
         if (checkNumberClosPerMonth.selectedIndex === 4) {
             precisClosPerMonth.className = 'form-control';
+            precisClosPerMonth.required = true;
         }
         if (checkNumberClosPerMonth.selectedIndex < 4) {
             precisClosPerMonth.className = 'invisible form-control';
@@ -46,6 +49,7 @@ if (checkBudOfProspPerMonth) {
     checkBudOfProspPerMonth.addEventListener('change', () => {
         if (checkBudOfProspPerMonth.selectedIndex === 6) {
             prcisBudProsMonth.className = 'form-control';
+            prcisBudProsMonth.required = true;
         }
         if (checkBudOfProspPerMonth.selectedIndex < 6) {
             prcisBudProsMonth.className = 'invisible form-control';
@@ -60,6 +64,8 @@ if (checkPriorityCommercial) {
     checkPriorityCommercial.addEventListener('change', () => {
         if (checkPriorityCommercial.checked) {
             prcisPrioCommercial.className = 'form-control';
+            prcisPrioCommercial.required = true;
+            
         }
         if (checkPriorityCommercial.checked === false) {
             prcisPrioCommercial.className = 'invisible form-control';
