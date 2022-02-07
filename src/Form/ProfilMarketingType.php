@@ -30,7 +30,7 @@ class ProfilMarketingType extends AbstractType
                     'Snapchat' => 6,
                     'Youtube' => 7,
                     'Pinterest' => 8,
-                    'Ausun' => 9,
+                    'Aucun' => 9,
                     'Autre' => 10
                 ],
                 'multiple' => true,
