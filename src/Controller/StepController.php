@@ -6,7 +6,9 @@ use App\Entity\ActionCheck;
 use App\Entity\Step;
 use App\Entity\StepCheck;
 use App\Form\StepType;
+use App\Repository\ActionRepository;
 use App\Repository\StepRepository;
+use App\Service\RoadmapManagement;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -85,20 +87,44 @@ class StepController extends AbstractController
                 ]);
             }
         }
-            return new Response("Vous n'avez pas accès à cette page.", 403);
+        return new Response("Vous n'avez pas accès à cette page.", 403);
     }
 
     /**
      * @Route("/{id}/edit", name="edit", methods={"GET", "POST"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function edit(Request $request, Step $step, EntityManagerInterface $entityManager): Response
-    {
+    public function edit(
+        Request $request,
+        Step $step,
+        EntityManagerInterface $entityManager,
+        ActionRepository $actionRepository,
+        RoadmapManagement $roadmapManagement
+    ): Response {
         $id = $step->getId();
         $form = $this->createForm(StepType::class, $step);
+        $actionsStart = $step->getActions();
+        $arrayStartActions = [];
+        foreach ($actionsStart as $actionStart) {
+            $arrayStartActions[] = $actionStart->getId();
+        }
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $actionsSubmited = $step->getActions();
+            $arrayEndActions = [];
+            foreach ($actionsSubmited as $actionSubmited) {
+                $arrayEndActions[] = $actionSubmited->getId();
+            }
+            $actions = array_diff($arrayEndActions, $arrayStartActions);
+            if (!(count($actions) == 0)) {
+                foreach ($actions as $action) {
+                    $actionSelect = $actionRepository->find($action);
+                    if ($actionSelect) {
+                        $roadmapManagement->updateStep($step, $actionSelect);
+                    }
+                }
+            }
             $entityManager->flush();
 
             return $this->redirectToRoute('step_show', ['id' => $id], Response::HTTP_SEE_OTHER);

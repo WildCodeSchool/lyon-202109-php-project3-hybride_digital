@@ -29,8 +29,14 @@
 							<div class="bg-dark border border-4 border-orange p-2">
 								<h5 class="text-orange text-decoration-underline">{{ item.name }}</h5>
 								<p class="text-light">{{ item.description }}</p>
-								<p class="text-orange">Suivre cette vidéo :</p>
-								<a class="link-light" href="{{ item.link }}">{{ item.link }}</a>
+								{% if "<iframe" in item.link %}
+									<div class="text-center">{{ item.link|raw }}
+									</div>
+								{% else %}
+									<p class="text-orange">Suivez ce lien :</p>
+									<a class="link-light" href="{{ item.link }}">{{ item.link }}</a>
+								{% endif %}
+
 							</div>
 						{% endif %}
 					</div>
