@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ProfilComRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ProfilComRepository::class)
@@ -39,6 +40,7 @@ class ProfilCommercial
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Regex("/^\+?\d+$/", message="Veuillez entrer un temps en heures")
      */
     private ?string $precisTimeOfProspec;
 
@@ -59,6 +61,7 @@ class ProfilCommercial
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Regex("/^\+?\d+$/", message="Veuillez entrer un nombre")
      */
     private ?string $precisClosPerMonth;
 
@@ -69,6 +72,7 @@ class ProfilCommercial
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Regex("/^\+?\d+$/", message="Veuillez entrer un nombre")
      */
     private ?string $prcisBudProsMonth;
 
