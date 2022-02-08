@@ -4,10 +4,10 @@
 	{% set menu_list =
 [
 	{link: path("admin_home"), bi: "house", text: "Accueil"},
-	{link: path("admin_gestionRoadmap"), bi: "grid", text: "Gestion Roadmaps"},
+	{link: path("admin_gestionRoadmap"), bi: "diagram-3", text: "Gestion Roadmaps"},
 	{link: path("user_index"), bi: "person", text: "Gestion Utilisateurs"},
 	{link: path("profil_index"), bi: "journal-text", text: "Gestion Audits"},
-	{link: path("ressource_index"), bi: "envelope", text: "Gestion Glossaire"},
+	{link: path("ressource_index"), bi: "mortarboard", text: "Gestion Glossaire"},
 ] %}
 	{% include "template_menu.html.twig" with menu_list %}
 {% endblock %}
