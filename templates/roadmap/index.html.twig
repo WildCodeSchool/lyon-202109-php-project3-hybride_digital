@@ -13,7 +13,6 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Id</th>
 					<th>Nom</th>
 					<th>Actions</th>
 				</tr>
@@ -21,7 +20,6 @@
 			<tbody>
 				{% for roadmap in roadmaps %}
 					<tr>
-						<td>{{ roadmap.id }}</td>
 						<td>{{ roadmap.name }}</td>
 						<td>
 							<a class="mx-3" href="{{ path('roadmap_show', {'id': roadmap.id}) }}">Voir</a>
