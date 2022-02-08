@@ -19,8 +19,13 @@
 				<tr>
 					<th>Lien</th>
 					<td>
-						<a class="link-dark" href="{{ ressource.link }}">{{ ressource.link }}</a>
+						{% if "<iframe" in ressource.link %}
+							{{ ressource.link|raw }}
+						{% else %}
+							<a class="link-dark" href="{{ ressource.link }}">{{ ressource.link }}</a>
+						{% endif %}
 					</td>
+
 				</tr>
 				<tr>
 					{% if ressource.type == "image" %}

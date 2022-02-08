@@ -27,7 +27,11 @@
 								{{ ressource.description }}
 								<br>
 								<br>
-								<a class="link-dark" href="{{ ressource.link }}">{{ ressource.link }}</a>
+								{% if "<iframe" in ressource.link %}
+							{{ ressource.link|raw }}
+						{% else %}
+							<a class="link-dark" href="{{ ressource.link }}">{{ ressource.link }}</a>
+						{% endif %}
 								<br>
 								{% if ressource.type == "image" %}
 									<a class="link-dark" href="{{ path('ressource_show', {'id': ressource.id}) }}">
