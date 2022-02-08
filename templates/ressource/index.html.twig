@@ -51,14 +51,12 @@
 						</td>
 						<td>
 							<a class="mx-1" href="{{ path('ressource_show', {'id': ressource.id}) }}">Voir</a>
+							{% if is_granted("ROLE_ADMIN") %}
+								<a class="mx-1" href="{{ path('ressource_edit', {'id': ressource.id}) }}">Modifier</a>
+							{% endif %}
 						</td>
 					</tr>
-				</br>
 			</tbody>
-		</br>
-		{% if is_granted("ROLE_ADMIN") %}
-			<a class="mx-1" href="{{ path('ressource_edit', {'id': ressource.id}) }}">Modifier</a>
-		{% endif %}
 	</td>
 </tr>{% else %}
 <tr>
