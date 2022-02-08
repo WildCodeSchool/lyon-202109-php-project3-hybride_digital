@@ -32,7 +32,7 @@
 						</td>
 						<td>
 							{% if "<iframe" in ressource.link %}
-								{{ ressource.link|replace({'560': "150", '315': "84"})|raw }}
+								{{ ressource.link|replace({'width="560"': 'width="150"', 'height="315"': 'height="84"'})|raw }}
 							{% endif %}
 							{% if ressource.type == "image" %}
 								<a class="link-dark" href="{{ path('ressource_show', {'id': ressource.id}) }}">
