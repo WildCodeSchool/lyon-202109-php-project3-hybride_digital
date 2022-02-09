@@ -81,7 +81,7 @@ class ProfilCommercialType extends AbstractType
     {
         $builder
         ->add('numberClosPerMonth', ChoiceType::class, [
-            'label' => 'Combien de closing fetes-vous par mois ?',
+            'label' => 'Combien de contrats faites-vous par mois ?',
             'required' => true,
             'choices'  => [
                 '1-2 contrats' => 1,
